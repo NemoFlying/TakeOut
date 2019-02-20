@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TakeOut.BLL.Role
+namespace TakeOut.BLL
 {
     public interface IRoleService
     {
