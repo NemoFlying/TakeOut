@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeOut", "TakeOut\TakeOut.csproj", "{B7AF60EC-921C-43BE-BD88-C521764B060F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7AF60EC-921C-43BE-BD88-C521764B060F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AF60EC-921C-43BE-BD88-C521764B060F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AF60EC-921C-43BE-BD88-C521764B060F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AF60EC-921C-43BE-BD88-C521764B060F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2866DA39-D230-4337-8496-2E7392400EBB}
+	EndGlobalSection
+EndGlobal
