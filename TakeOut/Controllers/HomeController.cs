@@ -15,7 +15,7 @@ namespace TakeOut.Controllers
         TakeOutContext dbcontext = new TakeOutContext();
         public ActionResult Index()
         {
-            var kk = dbcontext.User.FirstOrDefault();
+            //var kk = dbcontext.User.FirstOrDefault();
             return View();
         }
 
