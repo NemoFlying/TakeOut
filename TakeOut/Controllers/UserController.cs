@@ -32,9 +32,13 @@ namespace TakeOut.Controllers
         [HttpPost]
         public JsonResult LoginAuthentication(string logonUser, string password)
         {
-            var result = _userService.LogonAuthentication(logonUser, password);
-
             var reData = new JsonReMsg() { Status = "ERR" };
+            if(string.IsNullOrEmpty(logonUser)||string.IsNullOrEmpty(password))
+            {
+                reData.Msg = "请输入完整信息！";
+                return Json(reData, JsonRequestBehavior.AllowGet);
+            }
+            var result = _userService.LogonAuthentication(logonUser, password);
 
             switch(result)
             {
