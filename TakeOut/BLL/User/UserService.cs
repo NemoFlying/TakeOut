@@ -131,8 +131,10 @@ namespace TakeOut.BLL
             _userRoleDAL.Add(userRole);
             try
             {
-                return _userDAL.SaveChanges();
-            }catch(Exception ex)
+                 _userDAL.SaveChanges();
+                return _userRoleDAL.SaveChanges();
+            }
+            catch(Exception ex)
             {
                 //日志记录
                 return false;

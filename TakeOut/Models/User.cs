@@ -41,14 +41,12 @@ namespace TakeOut.Models
         /// M:男性
         /// F:女性
         /// </summary>
-        [Required]
         [MaxLength(1)]
         public string Sex { get; set; }
 
         /// <summary>
         /// 联系电话
         /// </summary>
-        [Required]
         [MaxLength(20)]
         public string Phone { get; set; }
 

@@ -31,8 +31,8 @@ window.onload = function () {
             }
         })
 
-        $.post("../User/LoginAuthentication", { logonUser: "Jerry", password:"985190626"}, function (reData) {
-            console.log(reData);
-        });
+        //$.post("../User/LoginAuthentication", { logonUser: "Jerry", password:"985190626"}, function (reData) {
+        //    console.log(reData);
+        //});
     });
 }
