@@ -1,0 +1,85 @@
+﻿body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #a6d3ff;
+}
+*{
+    margin:0;
+    padding:0;
+}
+li{
+    list-style:none;
+}
+.body {
+    width: 30%;
+    height: 400px;
+    background: #e3e3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    width:100%;
+    height:100%;
+}
+.bannerLogin img, .bannerReg img{
+    height:100px;
+    width:100%;
+    z-index:1;
+    position:relative;
+}
+.bannerLogin h1, .bannerReg h1 {
+    z-index: 2;
+    color: white;
+    position: relative;
+    top: -78px;
+    left: 4%;
+}
+.reg{
+    display:none;
+}
+.titleName{
+    width:100px;
+    display:inline-block;
+}
+.Personal{
+    width:90%;
+    padding:5%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.Personal input, .selectSex {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width:200px;
+}
+.selectSex{
+    width:220px;
+    padding:4px 0;
+}
+.Personal input {
+    padding: 4px 10px;
+}
+.loginBtn {
+    background: green;
+}
+.regBtn{
+    background:blue;
+}
+.loginBtn, .regBtn{
+    width:100px;
+    height:40px;
+    color:white;
+    border:none;
+    border-radius:6px;
+    margin: 0 10px;
+}
+.information{
+    padding:1% 5%;
+}
