@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeOut", "TakeOut\TakeOut.csproj", "{B7AF60EC-921C-43BE-BD88-C521764B060F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{29C13E8C-F14C-444B-BA4A-18E6FB80FBE0}"
+	ProjectSection(SolutionItems) = preProject
+		数据库设计.docx = 数据库设计.docx
+		需求分析.docx = 需求分析.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
