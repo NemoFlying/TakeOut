@@ -38,7 +38,7 @@ namespace TakeOut.DAL
                 new User()
                 {
                     LogonUser = "admin",
-                    Password="895190626",
+                    Password="FFBD90693A6A629C960CC7DC581F01D9",
                     HeadPortrait="图片地址",
                     Sex="M",
                     Phone="123",
@@ -48,7 +48,7 @@ namespace TakeOut.DAL
                 new User()
                 {
                     LogonUser = "Nemo",
-                    Password="895190626",
+                    Password="7C14E75254AE6BFD6833D7FA86310B25",
                     HeadPortrait="图片地址",
                     Sex="M",
                     Phone="123",
@@ -58,7 +58,7 @@ namespace TakeOut.DAL
                 new User()
                 {
                     LogonUser = "Jerry",
-                    Password="895190626",
+                    Password="19379D10FC994E226DAAAA840BF207CB",
                     HeadPortrait="图片地址",
                     Sex="M",
                     Phone="123",

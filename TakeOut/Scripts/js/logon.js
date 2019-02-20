@@ -10,7 +10,6 @@ window.onload = function () {
     //    $(".login").show();
     //    $(".reg").hide();
     //});
-
     //注册方法
     $(".loginBtn").on("click", function () {
         var names = $(".reg input[name = 'names']").val();
@@ -30,5 +29,9 @@ window.onload = function () {
 
         //    }
         //})
+
+        $.post("../User/LoginAuthentication", { logonUser: "Jerry", password:"985190626"}, function (reData) {
+            console.log(reData);
+        });
     });
 }
