@@ -168,6 +168,7 @@
     <Compile Include="BLL\User\IUserService.cs" />
     <Compile Include="BLL\User\UserService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\Goods\GoodsDAL.cs" />
     <Compile Include="DAL\Goods\IGoodsDAL.cs" />
@@ -184,7 +185,6 @@
     <Compile Include="DAL\Shop\ShopDAL.cs" />
     <Compile Include="DAL\TakeOutContext.cs" />
     <Compile Include="DAL\TakeOutInitializer.cs" />
-    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DAL\UserRole\IUserRoleDAL.cs" />
     <Compile Include="DAL\UserRole\UserRoleDAL.cs" />
     <Compile Include="DAL\User\IUserDAL.cs" />
@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
