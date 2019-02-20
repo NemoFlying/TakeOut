@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace TakeOut.BLL
+namespace TakeOut.BLL.Role.Dto
 {
-    public class BseService
+    public class RoleInfoInput
     {
     }
 }

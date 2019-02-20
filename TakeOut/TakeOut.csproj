@@ -161,8 +161,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\BaseService.cs" />
-    <Compile Include="BLL\BseService.cs" />
     <Compile Include="BLL\IBaseService.cs" />
+    <Compile Include="BLL\Role\Dto\RoleInfoInput.cs" />
     <Compile Include="BLL\Role\IRoleService.cs" />
     <Compile Include="BLL\Role\RoleService.cs" />
     <Compile Include="BLL\User\Dto\AuthenResult.cs" />
@@ -296,7 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BLL\Role\Dto\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
