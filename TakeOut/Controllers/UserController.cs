@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -75,11 +77,17 @@ namespace TakeOut.Controllers
             var reData = new JsonReMsg() { Status = "ERR" };
             //验证用户是否存在
             var user = _userService.GetUserInfoByName(userInfo.LogonUser);
-            if(user !=null)
+            if (user !=null)
             {
                 reData.Msg = "用户名已经存在";
             }else
             {
+                //密码加密
+                var md5 = new MD5CryptoServiceProvider();
+                var pwd = BitConverter.ToString(md5.ComputeHash(Encoding.Default.GetBytes(userInfo.LogonUser + userInfo.Password)));
+                pwd = pwd.Replace("-", "");
+                userInfo.Password = pwd;
+
                 reData.Status = _userService.RegistUser(userInfo) ? "OK" : "ERR";
                 if (reData.Status == "ERR")
                 {

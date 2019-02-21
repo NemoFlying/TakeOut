@@ -15,7 +15,7 @@ namespace TakeOut.BLL.Dto
            // RoleName = new List<string>();
         }
 
-        private int Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 登陆用户名

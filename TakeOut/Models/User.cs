@@ -14,7 +14,7 @@ namespace TakeOut.Models
     {
         public User()
         {
-            this.Locked = "Y";
+            this.Locked = "N";
             this.CreateDate = DateTime.Now;
         }
 
