@@ -293,6 +293,7 @@ namespace TakeOut.BLL
         /// <returns></returns>
         public bool SetUserRole(int userId, int roleId)
         {
+            _userRoleDAL.Delete(_userRoleDAL.GetModels(con => con.Id == userId).FirstOrDefault());
             _userRoleDAL.Add(new UserRole()
             {
                 LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault(),
