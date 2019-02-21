@@ -18,6 +18,10 @@ namespace TakeOut.Controllers
             var kk = dbcontext.User.FirstOrDefault();
             return View();
         }
+        public ActionResult Index2()
+        {
+            return View();
+        }
 
         public ActionResult Logon()
         {
