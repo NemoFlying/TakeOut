@@ -142,7 +142,7 @@ namespace TakeOut.Controllers
             var reData = new JsonReMsg() { Status = _userService.DisableOrEnableUserById(userId, lockStatus) ? "OK" : "ERR" };
             if (reData.Status == "ERR")
             {
-                reData.Msg = "删除失败,请联系管理员!";
+                reData.Msg = "设置禁用/解禁失败,请联系管理员!";
             }
             reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
@@ -159,7 +159,7 @@ namespace TakeOut.Controllers
             var reData = new JsonReMsg() { Status = _userService.SetUserRole(userId, RoleId) ? "OK" : "ERR" };
             if (reData.Status == "ERR")
             {
-                reData.Msg = "删除失败,请联系管理员!";
+                reData.Msg = "设置用户角色,请联系管理员!";
             }
             return Json(reData, JsonRequestBehavior.AllowGet);
         }

@@ -58,7 +58,8 @@ namespace TakeOut.BLL
             try
             {
                 _orderGoodsDAL.SaveChanges();
-                return _orderDAL.SaveChanges();
+                 _orderDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -78,7 +79,8 @@ namespace TakeOut.BLL
             _orderDAL.Update(Mapper.Map(newOrder, order));
             try
             {
-                return _orderDAL.SaveChanges();
+                 _orderDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -110,7 +112,8 @@ namespace TakeOut.BLL
             try
             {
                 _orderDAL.SaveChanges();
-                return _orderGoodsDAL.SaveChanges();
+                 _orderGoodsDAL.SaveChanges();
+                return true;
             }
             catch
             {

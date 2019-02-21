@@ -133,7 +133,8 @@ namespace TakeOut.BLL
             try
             {
                  //_userDAL.SaveChanges();
-                return _userRoleDAL.SaveChanges();
+                _userRoleDAL.SaveChanges();
+                return true;
             }
             catch(Exception ex)
             {
@@ -192,8 +193,10 @@ namespace TakeOut.BLL
             });
             try
             {
-                return _userDAL.SaveChanges();
-            }catch
+                _userDAL.SaveChanges();
+                return true;
+            }
+            catch
             {
                 //日志记录
                 return false;
@@ -214,7 +217,8 @@ namespace TakeOut.BLL
 
             try
             {
-                return _userDAL.SaveChanges();
+                _userDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -271,7 +275,8 @@ namespace TakeOut.BLL
             }
             try
             {
-                return _userRoleDAL.SaveChanges();
+                 _userRoleDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -295,7 +300,8 @@ namespace TakeOut.BLL
             });
             try
             {
-                return _userRoleDAL.SaveChanges();
+                _userRoleDAL.SaveChanges();
+                return true;
             }
             catch
             {
