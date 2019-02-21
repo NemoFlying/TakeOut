@@ -6,6 +6,10 @@ window.onload = function () {
     //    $(".login").hide();
     //    $(".reg").show();
     //});
+    //$(".loginBtn").on("click", function () {
+    //    $(".login").show();
+    //    $(".reg").hide();
+    //});
     //注册方法
     $(".loginBtn").on("click", function () {
         var names = $(".reg input[name = 'names']").val();
@@ -21,20 +25,14 @@ window.onload = function () {
             data: { LogonUser: UserName, Password: password},
             success: function (data) {
                 console.log(data);
-                if (data.Status == "ok") {
-                    $(".login").show();
-                    $(".reg").hide();
-                } else {
-                    alert("抱歉注册失败！请重新注册");
-                }
             },
             error: function () {
 
             }
         })
 
-        //$.post("../User/LoginAuthentication", { logonUser: "Jerry", password:"985190626"}, function (reData) {
-        //    console.log(reData);
-        //});
+        $.post("../User/LoginAuthentication", { logonUser: "Jerry", password:"985190626"}, function (reData) {
+            console.log(reData);
+        });
     });
 }
