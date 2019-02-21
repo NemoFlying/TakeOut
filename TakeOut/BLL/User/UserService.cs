@@ -131,17 +131,158 @@ namespace TakeOut.BLL
             _userRoleDAL.Add(userRole);
             try
             {
-                return _userDAL.SaveChanges();
-            }catch(Exception ex)
+                 _userDAL.SaveChanges();
+                return _userRoleDAL.SaveChanges();
+            }
+            catch(Exception ex)
             {
                 //日志记录
                 return false;
             }
             
         }
+        
+        /// <summary>
+        /// 获取所有人员信息【暂不分页】
+        /// </summary>
+        /// <returns></returns>
+        public List<UserInfoOutput> GetAllUserInfo()
+        {
+            return Mapper.Map<List<UserInfoOutput>>(_userDAL.GetModels(con => 1 == 1).ToList());
+        }
 
+        /// <summary>
+        /// 根据ID删除用户
+        /// </summary>
+        /// <param name="Ids"></param>
+        /// <returns></returns>
+        public bool DeleteModlesByIds(List<int> userIds)
+        {
+            userIds.ForEach(id =>
+            {
+                //删除基本信息
+                _userDAL.Delete(
+                    _userDAL.GetModels(con => con.Id == id)
+                    .FirstOrDefault()
+                    );
+                //删除对应角色问题
+                _userRoleDAL.GetModels(con => con.LogonUser.Id == id)
+                .ToList()
+                .ForEach(item => _userRoleDAL.Delete(_userRoleDAL
+                                            .GetModels(con => con.Id == item.Id).FirstOrDefault()));
+            });
+            try
+            {
+                return _userDAL.SaveChanges();
+            }catch
+            {
+                //日志记录
+                return false;
+            }
+        }
 
+        /// <summary>
+        /// 解除禁用/禁用用户
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <param name="lockStatus"></param>
+        /// <returns></returns>
+        public bool DisableOrEnableUserById(int userId, string lockStatus)
+        {
+            var user = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault();
+            user.Locked = lockStatus;
+            _userDAL.Update(user);
 
+            try
+            {
+                return _userDAL.SaveChanges();
+            }
+            catch
+            {
+                //日志记录
+                return false;
+            }
+        }
 
+        /// <summary>
+        /// 添加或者删除管理员权限
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="adminStatus"></param>
+        /// <returns></returns>
+        public bool SetOrCancelAdminRole(int userId, bool adminStatus)
+        {
+            List<string> roleNames = new List<string>();
+            _userRoleDAL.GetModels(con => con.LogonUser.Id == userId)
+                .ToList().ForEach(item => roleNames.Add(item.LogonRole.Name));
+            if(roleNames.Count<=0)
+            {
+                //表示暂时无权限
+                if(adminStatus) //添加管理员
+                {
+                    _userRoleDAL.Add(
+                        new UserRole()
+                        {
+                            LogonRole = _roleDAL.GetModels(con => con.Name == "admin").FirstOrDefault(),
+                            LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault()
+                        }
+                        );
+                }
+
+            }
+            else
+            {
+               if(adminStatus)
+                {
+                    if(!roleNames.Contains("admin"))
+                    {
+                        _userRoleDAL.Add(
+                        new UserRole()
+                        {
+                            LogonRole = _roleDAL.GetModels(con => con.Name == "admin").FirstOrDefault(),
+                            LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault()
+                        }
+                        );
+                    }
+                }else
+                {
+                    //删除管理员角色
+                    _userRoleDAL.Delete(_userRoleDAL.GetModels(con=>con.LogonRole.Name=="admin"&&con.LogonUser.Id== userId).FirstOrDefault());
+                }
+            }
+            try
+            {
+                return _userRoleDAL.SaveChanges();
+            }
+            catch
+            {
+                //日志记录
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 设置用户角色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="adminStatus"></param>
+        /// <returns></returns>
+        public bool SetUserRole(int userId, int roleId)
+        {
+            _userRoleDAL.Add(new UserRole()
+            {
+                LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault(),
+                LogonRole = _roleDAL.GetModels(con => con.Id == roleId).FirstOrDefault()
+            });
+            try
+            {
+                return _userRoleDAL.SaveChanges();
+            }
+            catch
+            {
+                //日志记录
+                return false;
+            }
+        }
     }
 }

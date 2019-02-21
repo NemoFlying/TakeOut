@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace TakeOut.DAL
+namespace TakeOut.BLL.Dto
 {
-    public class UserDAL
+    public class RoleInfoInput
     {
-        
     }
 }

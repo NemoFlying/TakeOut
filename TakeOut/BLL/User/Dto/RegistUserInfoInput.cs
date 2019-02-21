@@ -18,6 +18,11 @@ namespace TakeOut.BLL.Dto
         public string LogonUser { get; set; }
 
         /// <summary>
+        /// 登陆用户名
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
         /// 性别
         /// M:男性
         /// F:女性

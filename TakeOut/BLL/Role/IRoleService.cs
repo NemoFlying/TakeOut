@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TakeOut.Models;
 
-namespace TakeOut.DAL
+namespace TakeOut.BLL
 {
-    public interface IShopGoodsDAL : IBaseDAL<ShopGoods>
+    public interface IRoleService
     {
     }
 }

@@ -162,12 +162,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\BaseService.cs" />
     <Compile Include="BLL\IBaseService.cs" />
+    <Compile Include="BLL\Role\Dto\RoleInfoInput.cs" />
+    <Compile Include="BLL\Role\IRoleService.cs" />
+    <Compile Include="BLL\Role\RoleService.cs" />
     <Compile Include="BLL\User\Dto\AuthenResult.cs" />
     <Compile Include="BLL\User\Dto\RegistUserInfoInput.cs" />
     <Compile Include="BLL\User\Dto\UserInfoOutput.cs" />
     <Compile Include="BLL\User\IUserService.cs" />
     <Compile Include="BLL\User\UserService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\Goods\GoodsDAL.cs" />
     <Compile Include="DAL\Goods\IGoodsDAL.cs" />
@@ -184,7 +188,6 @@
     <Compile Include="DAL\Shop\ShopDAL.cs" />
     <Compile Include="DAL\TakeOutContext.cs" />
     <Compile Include="DAL\TakeOutInitializer.cs" />
-    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DAL\UserRole\IUserRoleDAL.cs" />
     <Compile Include="DAL\UserRole\UserRoleDAL.cs" />
     <Compile Include="DAL\User\IUserDAL.cs" />
@@ -209,15 +212,33 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\index.css" />
+    <Content Include="css\layui.css" />
+    <Content Include="css\layui.mobile.css" />
+    <Content Include="css\logon.css" />
+    <Content Include="css\modules\code.css" />
+    <Content Include="css\modules\laydate\default\laydate.css" />
+    <Content Include="css\modules\layer\default\icon-ext.png" />
+    <Content Include="css\modules\layer\default\icon.png" />
+    <Content Include="css\modules\layer\default\layer.css" />
+    <Content Include="css\modules\layer\default\loading-0.gif" />
+    <Content Include="css\modules\layer\default\loading-1.gif" />
+    <Content Include="css\modules\layer\default\loading-2.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\back.jpg" />
+    <Content Include="images\back1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="font\iconfont.eot" />
+    <Content Include="font\iconfont.svg" />
+    <Content Include="font\iconfont.ttf" />
+    <Content Include="font\iconfont.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -228,6 +249,38 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\css\layui.css" />
+    <Content Include="Scripts\js\css\layui.mobile.css" />
+    <Content Include="Scripts\js\css\modules\code.css" />
+    <Content Include="Scripts\js\css\modules\laydate\default\laydate.css" />
+    <Content Include="Scripts\js\css\modules\layer\default\icon-ext.png" />
+    <Content Include="Scripts\js\css\modules\layer\default\icon.png" />
+    <Content Include="Scripts\js\css\modules\layer\default\layer.css" />
+    <Content Include="Scripts\js\css\modules\layer\default\loading-0.gif" />
+    <Content Include="Scripts\js\css\modules\layer\default\loading-1.gif" />
+    <Content Include="Scripts\js\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Scripts\js\layui-index.js" />
+    <Content Include="Scripts\js\layui.js" />
+    <Content Include="Scripts\js\lay\modules\carousel.js" />
+    <Content Include="Scripts\js\lay\modules\code.js" />
+    <Content Include="Scripts\js\lay\modules\colorpicker.js" />
+    <Content Include="Scripts\js\lay\modules\element.js" />
+    <Content Include="Scripts\js\lay\modules\flow.js" />
+    <Content Include="Scripts\js\lay\modules\form.js" />
+    <Content Include="Scripts\js\lay\modules\jquery.js" />
+    <Content Include="Scripts\js\lay\modules\laydate.js" />
+    <Content Include="Scripts\js\lay\modules\layedit.js" />
+    <Content Include="Scripts\js\lay\modules\layer.js" />
+    <Content Include="Scripts\js\lay\modules\laypage.js" />
+    <Content Include="Scripts\js\lay\modules\laytpl.js" />
+    <Content Include="Scripts\js\lay\modules\mobile.js" />
+    <Content Include="Scripts\js\lay\modules\rate.js" />
+    <Content Include="Scripts\js\lay\modules\slider.js" />
+    <Content Include="Scripts\js\lay\modules\table.js" />
+    <Content Include="Scripts\js\lay\modules\tree.js" />
+    <Content Include="Scripts\js\lay\modules\upload.js" />
+    <Content Include="Scripts\js\lay\modules\util.js" />
+    <Content Include="Scripts\js\logon.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -247,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
