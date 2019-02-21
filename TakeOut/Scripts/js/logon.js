@@ -50,7 +50,7 @@ window.onload = function () {
         }
     });
     $(".login  .loginBtn").on("click", function () {
-        var UserName = $(".login input[name = 'UserName']").val();
+        var UserName = top.$(".login input[name = 'UserName']").val();
         var password = $(".login input[name = 'password']").val();
         if (UserName == null || password == null) {
             alert(UserName)

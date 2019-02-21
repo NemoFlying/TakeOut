@@ -17,13 +17,14 @@
             `)
         });
     };
-    function GetAllRolesSelect(data) {
-
+    function GetAllRoles(data) {
+        console.log(data)
         $(data).each(function () {
             //console.log(this)
             $(".role").append(`
                 <tr>
-                    <td title='`+ this.Key + `'>` + this.Value + `</td>
+                    <td id='`+ this.Id + `'>` + this.Name + `</td>
+                    <td>` + this.Description + `</td>
                     <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon removeBtn">&#xe640;</i></button></td>
                     <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal roleUpDate"><i class="layui-icon">&#xe642;</i></button></td>
                 </tr>
@@ -244,9 +245,9 @@
     $.ajax({
         async: true,
         type: "POST",
-        url: "../Role/GetAllRolesSelect",
+        url: "../Role/GetAllRoles",
         success: function (reData) {
-            GetAllRolesSelect(reData);
+            GetAllRoles(reData);
             layui.use('layer', function () {
                 var layer = layui.layer;
                 //角色管理功能
@@ -295,7 +296,7 @@
                       <div class="layui-form-item">
                         <label class="layui-form-label">输入框</label>
                         <div class="layui-input-block">
-                          <input type="text" name="roleUpDateName" required  lay-verify="required" value='' placeholder="请输入标题" autocomplete="off" class="layui-input roleUpDateName">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleUpDateName' placeholder="请输入标题" autocomplete="off" class="layui-input roleUpDateName">
                         </div>
                       </div>
                     </div>
@@ -324,21 +325,31 @@
                             console.log(reData)
                             layer.close(layer.index);
                             $(".userTable tbody tr").remove();
-                            GetAllRolesSelect(reData.Data);
+                            GetAllRoles(reData.Data);
                         }
                     });
                     //RoleIds
                 });
             });
             $(".role .roleUpDate").on("click", function () {
-                
-
-                var roleUpDateName = $(".roleUpDateName");
-                var roleUpDateNames = $(".roleUpDateName")[0].Value;
-                console.log(roleUpDateName)
-                console.log(roleUpDateNames)
+                var Description = $(this).parents("tr").find("td:nth(1)").text();
                 $(".roleUpDateBtns").on("click", function () {
-                    console.log("123456")
+                    var roleUpDateName = $("#roleUpDateName").val();
+                    
+                    console.log(Description);
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "../Role/AddOrUpdateRole",
+                        data: { Name: roleUpDateName},
+                        success: function (reData) {
+                            console.log(reData)
+                            //layer.close(layer.index);
+                            //$(".userTable tbody tr").remove();
+                            //GetAllRoles(reData.Data);
+                            //Description
+                        }
+                    });
                 });
             });
         }
