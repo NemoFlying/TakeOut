@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -10,7 +12,7 @@ using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
 {
-    public class UserController : Controller
+    public class UserController : TakeOutBaseController
     {
         private IUserService _userService { get; set; }
 
@@ -55,6 +57,10 @@ namespace TakeOut.Controllers
                     break;
                 case "0":
                 default:
+                    //获取登陆用户信息
+                    //保存Session
+                    var userInfo = _userService.GetUserInfoByName(logonUser);
+                    HttpContext.Session["userinfo"] = userInfo;
                     reData.Status = "OK";
                     break;
             }
@@ -71,10 +77,30 @@ namespace TakeOut.Controllers
         [HttpPost]
         public JsonResult RegistUser(RegistUserInfoInput userInfo)
         {
-            var reData = new JsonReMsg() { Status = _userService.RegistUser(userInfo) ? "OK" : "ERR" };
-            if(reData.Status=="ERR")
+            userInfo.LogonUser = userInfo.LogonUser.Trim();
+            var reData = new JsonReMsg() { Status = "ERR" };
+            //验证用户是否存在
+            var user = _userService.GetUserInfoByName(userInfo.LogonUser);
+            if (user !=null)
             {
-                reData.Msg = "注册失败,请联系管理员!";
+                reData.Msg = "用户名已经存在";
+            }else
+            {
+                //密码加密
+                var md5 = new MD5CryptoServiceProvider();
+                var pwd = BitConverter.ToString(md5.ComputeHash(Encoding.Default.GetBytes(userInfo.LogonUser + userInfo.Password)));
+                pwd = pwd.Replace("-", "");
+                userInfo.Password = pwd;
+
+                reData.Status = _userService.RegistUser(userInfo) ? "OK" : "ERR";
+                if (reData.Status == "ERR")
+                {
+                    reData.Msg = "注册失败,请联系管理员!";
+                }
+                else
+                {
+                    reData.Msg = "欢迎加入!";
+                }
             }
             return Json(reData, JsonRequestBehavior.AllowGet);
         }

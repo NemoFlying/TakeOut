@@ -181,6 +181,11 @@
     </div>
     <script src="~/Scripts/js/layui.js"></script>
     <script>
+        $(function () {
+            $.post("../User/GetAllUser", {}, function (reData) {
+                console.log(reData);
+            })
+        })
         //JavaScript代码区域
         //Demo
         layui.use('form', function () {

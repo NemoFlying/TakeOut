@@ -161,16 +161,27 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\BaseService.cs" />
+    <Compile Include="BLL\Goods\Dto\GoodsInfoInput.cs" />
+    <Compile Include="BLL\Goods\GoodsService.cs" />
+    <Compile Include="BLL\Goods\IGoodsService.cs" />
     <Compile Include="BLL\IBaseService.cs" />
+    <Compile Include="BLL\Order\Dto\OrderInfoInput.cs" />
+    <Compile Include="BLL\Order\IOrderService.cs" />
+    <Compile Include="BLL\Order\OrderService.cs" />
     <Compile Include="BLL\Role\Dto\RoleInfoInput.cs" />
     <Compile Include="BLL\Role\IRoleService.cs" />
     <Compile Include="BLL\Role\RoleService.cs" />
+    <Compile Include="BLL\Shop\Dto\ShopInfoInput.cs" />
+    <Compile Include="BLL\Shop\IShopService.cs" />
+    <Compile Include="BLL\Shop\ShopService.cs" />
     <Compile Include="BLL\User\Dto\AuthenResult.cs" />
     <Compile Include="BLL\User\Dto\RegistUserInfoInput.cs" />
     <Compile Include="BLL\User\Dto\UserInfoOutput.cs" />
     <Compile Include="BLL\User\IUserService.cs" />
     <Compile Include="BLL\User\UserService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TakeOutBaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\Goods\GoodsDAL.cs" />
@@ -205,6 +216,7 @@
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\JsonReMsg.cs" />
+    <Compile Include="ViewModels\SelectOptionModel.cs" />
     <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +314,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Role\" />
+    <Folder Include="Views\TakeOutBase\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

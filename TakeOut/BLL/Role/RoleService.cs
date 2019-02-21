@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TakeOut.BLL.Dto;
 using TakeOut.DAL;
 using TakeOut.Models;
 
 namespace TakeOut.BLL
 {
-    public class RoleService
+    public class RoleService: IRoleService
     {
         private readonly IRoleDAL _roleDAL;
 
@@ -59,13 +60,33 @@ namespace TakeOut.BLL
         }
 
 
-        //public bool AddRoleModles()
-        //{
-        //    _roleDAL.Add(new Role() {
-        //         Name = 
-        //    })
+        /// <summary>
+        /// 更新OR添加新角色
+        /// </summary>
+        /// <param name="newRole"></param>
+        /// <returns></returns>
 
-        //}
+        public bool AddOrUpdateRoleModle(RoleInfoInput newRole)
+        {
+            //检查角色名称是否存在
+            var role = _roleDAL.GetModels(con => con.Name == newRole.Name).FirstOrDefault();
+            if(role is null)
+            {
+                //不存在添加角色
+                _roleDAL.Add(new Role()
+                {
+                    Name = newRole.Name,
+                    Description = newRole.Description
+                });
+            }
+            else
+            {
+                //跟新角色
+                role.Description = newRole.Description;
+                _roleDAL.Update(role);
+            }
+            return _roleDAL.SaveChanges();
+        }
 
 
     }
