@@ -15,18 +15,12 @@ namespace TakeOut.Models
         public Order()
         {
             this.CreateDate = DateTime.Now;
+            this.OrderStaus = 0;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
-
-        /// <summary>
-        /// 商品名称
-        /// </summary>
-        [Required]
-        [MaxLength(50)]
-        public string OrderNo { get; set; }
 
         /// <summary>
         /// 下订单用户
@@ -42,6 +36,12 @@ namespace TakeOut.Models
         [MaxLength(150)]
         public string Addr { get; set; }
 
+        /// <summary>
+        /// 收货人
+        /// </summary>
+        [Required]
+        [MaxLength(150)]
+        public string Recevier { get; set; }
 
         /// <summary>
         /// 联系电话
@@ -61,6 +61,7 @@ namespace TakeOut.Models
         /// 1:已经处理
         /// 2:取消
         /// </summary>
+        [Required]
         public int OrderStaus { get; set; }
 
         /// <summary>

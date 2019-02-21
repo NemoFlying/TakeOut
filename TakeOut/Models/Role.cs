@@ -48,6 +48,7 @@ namespace TakeOut.Models
         /// <summary>
         /// 创建时间
         /// </summary>
+        [Required]
         public DateTime CreateDate { get; set; }
     }
 }

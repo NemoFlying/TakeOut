@@ -71,10 +71,24 @@ namespace TakeOut.Controllers
         [HttpPost]
         public JsonResult RegistUser(RegistUserInfoInput userInfo)
         {
-            var reData = new JsonReMsg() { Status = _userService.RegistUser(userInfo) ? "OK" : "ERR" };
-            if(reData.Status=="ERR")
+            userInfo.LogonUser = userInfo.LogonUser.Trim();
+            var reData = new JsonReMsg() { Status = "ERR" };
+            //验证用户是否存在
+            var user = _userService.GetUserInfoByName(userInfo.LogonUser);
+            if(user !=null)
             {
-                reData.Msg = "注册失败,请联系管理员!";
+                reData.Msg = "用户名已经存在";
+            }else
+            {
+                reData.Status = _userService.RegistUser(userInfo) ? "OK" : "ERR";
+                if (reData.Status == "ERR")
+                {
+                    reData.Msg = "注册失败,请联系管理员!";
+                }
+                else
+                {
+                    reData.Msg = "欢迎加入!";
+                }
             }
             return Json(reData, JsonRequestBehavior.AllowGet);
         }

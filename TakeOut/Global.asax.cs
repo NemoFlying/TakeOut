@@ -20,6 +20,8 @@ namespace TakeOut
                 Mapper.Initialize(config =>
                 {
                     config.CreateMap<RegistUserInfoInput, User>();
+                    config.CreateMap<ShopInfoInput, Shop>();
+                    config.CreateMap<GoodsInfoInput, Goods>();
                 });
             }
         }
