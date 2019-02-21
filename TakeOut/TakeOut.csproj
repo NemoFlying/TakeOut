@@ -161,10 +161,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\BaseService.cs" />
+    <Compile Include="BLL\Goods\Dto\GoodsInfoInput.cs" />
+    <Compile Include="BLL\Goods\GoodsService.cs" />
+    <Compile Include="BLL\Goods\IGoodsService.cs" />
     <Compile Include="BLL\IBaseService.cs" />
+    <Compile Include="BLL\Order\Dto\OrderInfoInput.cs" />
+    <Compile Include="BLL\Order\IOrderService.cs" />
+    <Compile Include="BLL\Order\OrderService.cs" />
     <Compile Include="BLL\Role\Dto\RoleInfoInput.cs" />
     <Compile Include="BLL\Role\IRoleService.cs" />
     <Compile Include="BLL\Role\RoleService.cs" />
+    <Compile Include="BLL\Shop\Dto\ShopInfoInput.cs" />
+    <Compile Include="BLL\Shop\IShopService.cs" />
+    <Compile Include="BLL\Shop\ShopService.cs" />
     <Compile Include="BLL\User\Dto\AuthenResult.cs" />
     <Compile Include="BLL\User\Dto\RegistUserInfoInput.cs" />
     <Compile Include="BLL\User\Dto\UserInfoOutput.cs" />
@@ -297,6 +306,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Logon.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

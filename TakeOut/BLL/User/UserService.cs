@@ -87,13 +87,16 @@ namespace TakeOut.BLL
                 var role = _userRoleDAL
                     .GetModels(con => con.LogonUser.Id == user.Id)
                     .FirstOrDefault();
-                userInfo.RoleName = role.LogonRole.Name;
-                userInfo.RoleLocked = role.LogonRole.Locked;
+                if(role!=null)
+                {
+                    userInfo.RoleName = role.LogonRole.Name;
+                    userInfo.RoleLocked = role.LogonRole.Locked;
+                }
                 //获取商家信息
                 var shop = _shopDAL
                     .GetModels(con => con.Keeper.Id == user.Id)
                     .FirstOrDefault();
-                if(shop != null)
+                if (shop != null)
                 {
                     userInfo.ShopName = shop.Name;
                     userInfo.ShopID = shop.Id;
@@ -103,8 +106,6 @@ namespace TakeOut.BLL
                 
             }
             return userInfo;
-            //_userDAL.GetModels(con=>con.LogonUser)
-
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace TakeOut.BLL
         public bool RegistUser(RegistUserInfoInput userInfo)
         {
             var user = Mapper.Map<User>(userInfo);
-            _userDAL.Add(user);
+            //_userDAL.Add(user);
             //添加默认组
             var userRole = new UserRole()
             {
@@ -131,7 +132,7 @@ namespace TakeOut.BLL
             _userRoleDAL.Add(userRole);
             try
             {
-                 _userDAL.SaveChanges();
+                 //_userDAL.SaveChanges();
                 return _userRoleDAL.SaveChanges();
             }
             catch(Exception ex)
