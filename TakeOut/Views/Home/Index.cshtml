@@ -141,7 +141,38 @@
                 </div>
                 @*店家管理*@
                 <div class="layui-tab-item">
-                    内容3
+                    <table class="layui-table storeTable">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>地址</th>
+                                <th>电话</th>
+                                <th>状态</th>
+                                <th>申请</th>
+                                <th colspan="2">修改</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>123456</td>
+                                <td>贤心</td>
+                                <td>jkgas12321</td>
+                                <td>12345678901</td>
+                                <th>审核中</th>
+
+                                <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
+                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
+                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingRole">修改</button></th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -285,6 +316,37 @@
                 `
                 });
             });
+            //storeTable
+            $(".role .layui-btn-normal").on('click', function () {
+                layer.open({
+                    type: 1,
+                    title: "修改",
+                    content: `
+                <div class= "layui-form-item" >
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="role" required lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="role" required lay-verify="required" placeholder="地址" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">电脑</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="role" required lay-verify="required" placeholder="电脑" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux" style='margin:0 50px;'>例如：user1</div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+                `
+                });
+            });
+
         });
     </script>
 </body>
