@@ -1,7 +1,75 @@
 ﻿
 @{
-    ViewBag.Title = "Index2";
+    Layout = null;
 }
 
-<h2>Index2</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理员首页</title>
+    <link rel="stylesheet" href="~/css/layui.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">管理员首页</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="../Home/Logon">退了</a></li>
+            </ul>
+        </div>
 
+        <div class="layui-col-md12"  style="display:flex;justify-content:center;align-items:center;height:800px;">
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin:0;">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/layui.js"></script>
+    <script>
+        //JavaScript代码区域
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+
+        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
+            var element = layui.element;
+
+            //…
+        });
+
+    </script>
+</body>
+</html>

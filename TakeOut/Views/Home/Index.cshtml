@@ -42,117 +42,114 @@
         </div>
 
         <div class="layui-col-md12">
-        <div class="layui-tab">
-            <ul class="layui-tab-title">
-                <li class="layui-this">用户管理</li>
-                <li>角色管理</li>
-                <li>店家管理</li>
-            </ul>
-            <div class="layui-tab-content">
-                @*用户管理*@
-                <div class="layui-tab-item layui-show">
-                    <table class="layui-table userTable">
-                        <colgroup>
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>用户名</th>
-                                <th>账号</th>
-                                <th>角色</th>
-                                <th>状态</th>
-                                <th>是否为商家</th>
-                                <th>审核状态</th>
-                                <th colspan="6">工具栏</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>123456</td>
-                                <td>贤心</td>
-                                <td>jkgas12321</td>
-                                <td>普通</td>
-                                <th>未禁用</th>
-                                <th>否</th>
-                                <th>审核中</th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">解除禁用</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger disable">禁用</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm isAdmin">设置管理员</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger settingRole">设置角色</button></th>
-                                <th>审核</th>
-                            </tr>
-                            <tr>
-                                <td>435678</td>
-                                <td>许闲心</td>
-                                <td>lksajd1213</td>
-                                <td>管理员</td>
-                                <th>禁用中</th>
-                                <th>是</th>
-                                <th>审核通过</th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">解除禁用</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger disable">禁用</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm isAdmin">设置管理员</button></th>
-                                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger settingRole">设置角色</button></th>
-                                <th>审核</th>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">用户管理</li>
+                    <li>角色管理</li>
+                    <li>店家管理</li>
+                </ul>
+                <div class="layui-tab-content">
+                    @*用户管理*@
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table userTable">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>账号</th>
+                                    <th>角色</th>
+                                    <th>状态</th>
+                                    <th>是否为商家</th>
+                                    <th colspan="4">工具栏</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
 
-                    
-                </div>
-                @*角色管理*@
-                <div class="layui-tab-item">
 
-                    <table class="layui-table">
-                        <colgroup>
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th width="80%">角色</th>
-                                <th colspan="2" width="20%">功能</th>
-                            </tr>
-                        </thead>
-                        <tbody class="role">
-                            <tr>
-                                <td>人生就像是一场修行</td>
-                                <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe640;</i></button></td>
-                                <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal"><i class="layui-icon">&#xe642;</i></button></td>
-                            </tr>
-                            <tr>
-                                <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                                <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe640;</i></button></td>
-                                <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal"><i class="layui-icon">&#xe642;</i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form class="layui-form" action="">
-                       
-                    </form>
-                    <button class="layui-btn layui-btn-radius">添加角色</button>
-                </div>
-                @*店家管理*@
-                <div class="layui-tab-item">
-                    内容3
+
+                    </div>
+                    @*角色管理*@
+                    <div class="layui-tab-item">
+
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th width="80%">角色</th>
+                                    <th colspan="2" width="20%">功能</th>
+                                </tr>
+                            </thead>
+                            <tbody class="role">
+                                <tr>
+                                    <td>人生就像是一场修行</td>
+                                    <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe640;</i></button></td>
+                                    <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal"><i class="layui-icon">&#xe642;</i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                                    <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe640;</i></button></td>
+                                    <td width="10%"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal"><i class="layui-icon">&#xe642;</i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <form class="layui-form" action=""></form>
+                        <button class="layui-btn layui-btn-radius">添加角色</button>
+                    </div>
+                    @*店家管理*@
+                    <div class="layui-tab-item">
+                        <table class="layui-table storeTable">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>地址</th>
+                                    <th>电话</th>
+                                    <th>状态</th>
+                                    <th>申请</th>
+                                    <th colspan="2">修改</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>123456</td>
+                                    <td>贤心</td>
+                                    <td>jkgas12321</td>
+                                    <td>12345678901</td>
+                                    <th>审核中</th>
+
+                                    <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
+                                    <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
+                                    <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingRole">修改</button></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     </div>
     <script src="~/Scripts/js/layui.js"></script>
+    <script src="~/Scripts/js/index.js"></script>
     <script>
         $(function () {
             $.post("../User/GetAllUser", {}, function (reData) {
-                console.log(reData);
+                //console.log(reData);
             })
         })
         //JavaScript代码区域
@@ -173,124 +170,9 @@
 
             //…
         });
-        
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            //用户管理
-            $(".userTable .remove").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "删除",
-                    content: `
-                    <div style='height:100px;width:300px;'></div>
-                    <div class="layui-input-block" style='margin-bottom:10px;'>
-                        <button class="layui-btn">确认删除</button>
-                    </div>
-                    `
-                });
-            });
-            //删除
-            $(".userTable .disable").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "禁用",
-                    content: `
-                    <div style='height:100px;width:300px;'></div>
-                    <div class="layui-input-block" style='margin-bottom:10px;'>
-                        <button class="layui-btn">确认禁用</button>
-                    </div>
-                    `
-                });
-            });
-            $(".userTable .isable").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "解除禁用",
-                    content: `
-                    <div style='height:100px;width:300px;'></div>
-                    <div class="layui-input-block" style='margin-bottom:10px;'>
-                        <button class="layui-btn">确认提交</button>
-                    </div>
-                    `
-                });
-            });
-            $(".userTable .isAdmin").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "设置管理员",
-                    content: `
-                    <div style='height:100px;width:300px;'></div>
-                    <div class="layui-input-block" style='margin-bottom:10px;'>
-                        <button class="layui-btn">确认提交</button>
-                    </div>
-                    `
-                });
-            });
-            //设置角色
-            $(".userTable .settingRole").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "设置角色",
-                    content: `
-                        <div class="layui-form-item" style='height:100px;width:300px;'>
-                            <label class="layui-form-label">选择框</label>
-                            <div class="layui-input-block">
-                                <select name="users" lay-verify="required" style='margin: 9px 15px;width: 130px;'>
-                                    <option value=""></option>
-                                    <option value="0">admin</option>
-                                    <option value="1">user</option>
-                                    <option value="2">user1</option>
-                                    <option value="3">user2</option>
-                                    <option value="4">user3</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn">立即提交</button>
-                            </div>
-                        </div>
-                    `
-                });
-            });
-            //角色管理功能
-            //删除
-            $(".role .layui-btn-danger").on("click", function () {
-                layer.open({
-                    type: 1,
-                    title: "刪除",
-                    content: `
-                    <div style='height:100px;width:300px;'></div>
-                    <div class="layui-input-block" style='margin-bottom:10px;'>
-                        <button class="layui-btn">确认删除</button>
-                    </div>
-                    `
-                });
-            });
-            //添加角色
-            $(".role .layui-btn-normal").on('click', function () {
-                layer.open({
-                    type: 1,
-                    title:"添加角色",
-                    content: `
-                <div class= "layui-form-item" >
-                    <label class="layui-form-label">角色名</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="role" required lay-verify="required" placeholder="输入角色名称" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux" style='margin:0 50px;'>例如：user1</div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
-                </div>
-                `
-                });
-            });
-        });
+        
     </script>
+
 </body>
 </html>
