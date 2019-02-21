@@ -63,9 +63,18 @@ namespace TakeOut.BLL
                     _goodsDAL.Delete(_goodsDAL.GetModels(con => con.Id == item.GoodsInfo.Id).FirstOrDefault());
                     _shopGoodsDAL.Delete(item);
                 });
-            _goodsDAL.SaveChanges();
-            _shopGoodsDAL.SaveChanges();
-            return _shopDAL.SaveChanges();
+            
+            try
+            {
+                _goodsDAL.SaveChanges();
+                _shopGoodsDAL.SaveChanges();
+                _shopDAL.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -88,8 +97,15 @@ namespace TakeOut.BLL
                 shop.Locked = shopInput.Locked;
                 _shopDAL.Update(shop);
             }
-            
-            return _shopDAL.SaveChanges();
+            try
+            {
+                _shopDAL.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -104,7 +120,16 @@ namespace TakeOut.BLL
             shopInfo.ApplyStaus = agree ? 1 : 2;
             shopInfo.Locked = agree ? "N" : "Y";
             _shopDAL.Update(shopInfo);
-            return _shopDAL.SaveChanges();
+            try
+            {
+                _shopDAL.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+             
         }
 
     }
