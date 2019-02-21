@@ -73,10 +73,10 @@ form{
 .loginBtn {
     background: green;
 }
-.regBtn{
+.regBtn, .backBtn{
     background:blue;
 }
-.loginBtn, .regBtn{
+.loginBtn, .regBtn, .backBtn{
     width:100px;
     height:40px;
     color:white;
