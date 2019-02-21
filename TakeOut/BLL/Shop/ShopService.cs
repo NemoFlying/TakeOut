@@ -12,7 +12,7 @@ namespace TakeOut.BLL
     /// <summary>
     /// 店铺管理
     /// </summary>
-    public class ShopService
+    public class ShopService: IShopService
     {
         private readonly IShopDAL _shopDAL;
         private readonly IGoodsDAL _goodsDAL;

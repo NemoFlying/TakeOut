@@ -149,7 +149,25 @@ namespace TakeOut.BLL
         /// <returns></returns>
         public List<UserInfoOutput> GetAllUserInfo()
         {
-            return Mapper.Map<List<UserInfoOutput>>(_userDAL.GetModels(con => 1 == 1).ToList());
+            var userInfo = Mapper.Map<List<UserInfoOutput>>(_userDAL.GetModels(con => 1 == 1).ToList());
+            userInfo.ForEach(item =>
+            {
+                //添加角色名称
+                var user = userInfo.Find(con => con.Id == item.Id);
+                var role = _userRoleDAL.GetModels(con => con.LogonUser.Id == item.Id).FirstOrDefault();
+                if (role != null)
+                {
+                    user.RoleName = role.LogonRole.Name;
+                }
+                var shop = _shopDAL.GetModels(con => con.Keeper.Id == item.Id).FirstOrDefault();
+                if (shop != null)
+                {
+                    user.ShopID = shop.Id;
+                    user.ShopLocked = shop.Locked;
+                    user.ShopName = shop.Name;
+                }
+            });
+            return userInfo;
         }
 
         /// <summary>

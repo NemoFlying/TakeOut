@@ -128,6 +128,7 @@ namespace TakeOut.Controllers
             {
                 reData.Msg = "删除失败,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
@@ -143,6 +144,7 @@ namespace TakeOut.Controllers
             {
                 reData.Msg = "删除失败,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
 
