@@ -185,10 +185,12 @@
                         url: "../User/DeleteUsers",
                         data: { userIds: [ID]},
                         success: function (reData) {
+                            console.log("aaaaaaaaa");
                             console.log(reData)
+                            console.log("bbbbbbbb");
                             layer.close(layer.index);
                             $(".userTable tbody tr").remove();
-                            ajaxData(reData.data);
+                            ajaxData(reData.Data);
                         }
                     });
                 });

@@ -73,20 +73,20 @@ namespace TakeOut.DAL
             var userRoles = new List<UserRole>()
             {
                 new UserRole(){
-                    LogonUser = context.User.Where(con=>con.LogonUser=="Nemo").FirstOrDefault(),
-                    LogonRole = context.Role.Where(con=>con.Name=="user").FirstOrDefault(),
+                    UId = context.User.Where(con=>con.LogonUser=="Nemo").FirstOrDefault().Id,
+                    RId = context.Role.Where(con=>con.Name=="user").FirstOrDefault().Id,
                     CreateDate = DateTime.Now
                 },
                 new UserRole()
                 {
-                    LogonUser = context.User.Where(con=>con.LogonUser=="admin").FirstOrDefault(),
-                    LogonRole = context.Role.Where(con=>con.Name=="admin").FirstOrDefault(),
+                    UId = context.User.Where(con=>con.LogonUser=="admin").FirstOrDefault().Id,
+                    RId = context.Role.Where(con=>con.Name=="admin").FirstOrDefault().Id,
                     CreateDate = DateTime.Now
                 },
                 new UserRole()
                 {
-                    LogonUser = context.User.Where(con=>con.LogonUser=="Jerry").FirstOrDefault(),
-                    LogonRole = context.Role.Where(con=>con.Name=="business").FirstOrDefault(),
+                    UId = context.User.Where(con=>con.LogonUser=="Jerry").FirstOrDefault().Id,
+                    RId = context.Role.Where(con=>con.Name=="business").FirstOrDefault().Id,
                     CreateDate = DateTime.Now
                 }
             };

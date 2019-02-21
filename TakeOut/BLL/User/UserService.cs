@@ -85,7 +85,7 @@ namespace TakeOut.BLL
             {
                 //获取用户组信息【当前用户只能具有一个权限】
                 var role = _userRoleDAL
-                    .GetModels(con => con.LogonUser.Id == user.Id)
+                    .GetModels(con => con.UId == user.Id)
                     .FirstOrDefault();
                 if(role!=null)
                 {
@@ -155,10 +155,10 @@ namespace TakeOut.BLL
             {
                 //添加角色名称
                 var user = userInfo.Find(con => con.Id == item.Id);
-                var role = _userRoleDAL.GetModels(con => con.LogonUser.Id == item.Id).FirstOrDefault();
+                var role = _userRoleDAL.GetModels(con => con.UId == item.Id).FirstOrDefault();
                 if (role != null)
                 {
-                    user.RoleName = role.LogonRole.Name;
+                    user.RoleName = _roleDAL.GetModels(con => con.Id == role.RId).FirstOrDefault().Name;
                 }
                 var shop = _shopDAL.GetModels(con => con.Keeper.Id == item.Id).FirstOrDefault();
                 if (shop != null)
@@ -286,25 +286,29 @@ namespace TakeOut.BLL
         }
 
         /// <summary>
-        /// 设置用户角色
+        /// 设置用户角色【当前只能一个角色】
         /// </summary>
         /// <param name="id"></param>
         /// <param name="adminStatus"></param>
         /// <returns></returns>
         public bool SetUserRole(int userId, int roleId)
         {
-            _userRoleDAL.Delete(_userRoleDAL.GetModels(con => con.LogonUser.Id == userId).FirstOrDefault());
+            var userRole = _userRoleDAL.GetModels(con => con.UId == userId).FirstOrDefault();
+            if(userRole != null)
+            {
+                _userRoleDAL.Delete(userRole);
+            };
             _userRoleDAL.Add(new UserRole()
             {
-                LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault(),
-                LogonRole = _roleDAL.GetModels(con => con.Id == roleId).FirstOrDefault()
+                UId = userId,
+                RId = roleId
             });
             try
             {
                 _userRoleDAL.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 //日志记录
                 return false;
