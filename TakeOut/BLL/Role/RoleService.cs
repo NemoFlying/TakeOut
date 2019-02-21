@@ -8,7 +8,7 @@ using TakeOut.Models;
 
 namespace TakeOut.BLL
 {
-    public class RoleService
+    public class RoleService: IRoleService
     {
         private readonly IRoleDAL _roleDAL;
 

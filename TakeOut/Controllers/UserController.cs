@@ -12,7 +12,7 @@ using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
 {
-    public class UserController : Controller
+    public class UserController : TakeOutBaseController
     {
         private IUserService _userService { get; set; }
 
@@ -57,6 +57,10 @@ namespace TakeOut.Controllers
                     break;
                 case "0":
                 default:
+                    //获取登陆用户信息
+                    //保存Session
+                    var userInfo = _userService.GetUserInfoByName(logonUser);
+                    HttpContext.Session["userinfo"] = userInfo;
                     reData.Status = "OK";
                     break;
             }
