@@ -161,6 +161,7 @@ namespace TakeOut.Controllers
             {
                 reData.Msg = "设置用户角色,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
 
