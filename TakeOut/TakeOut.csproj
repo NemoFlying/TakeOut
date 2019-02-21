@@ -181,6 +181,7 @@
     <Compile Include="BLL\User\UserService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\TakeOutBaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
@@ -314,6 +315,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Role\" />
+    <Folder Include="Views\Shop\" />
     <Folder Include="Views\TakeOutBase\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
