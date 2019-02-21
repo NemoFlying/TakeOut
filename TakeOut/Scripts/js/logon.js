@@ -24,7 +24,7 @@ window.onload = function () {
             url: "../User/RegistUser",
             data: { LogonUser: UserName, Password: password},
             success: function (data) {
-                console.log(data)
+                console.log(data);
             },
             error: function () {
 
