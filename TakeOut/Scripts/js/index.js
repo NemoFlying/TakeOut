@@ -33,20 +33,23 @@
     };
     function GetAllShops(data) {
         console.log(data);
-        $(".AllShops tbody").append(
-            `
+        $(data).each(function () {
+            $(".AllShops tbody").append(
+                `
             <tr>
-                <td>123456</td>
-                <td>贤心</td>
-                <td>jkgas12321</td>
-                <td>12345678901</td>
-                <th>审核中</th>
+                <td>`+ this.Id + `</td>
+                <td>`+ this.Name + `</td>
+                <td>`+ this.Addr + `</td>
+                <td>`+ this.Phone + `</td>
+                <th>`+ (this.ApplyStaus == '0' ? '未通过' : '通过') + `</th>
                 <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
                 <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
                 <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingRole">修改</button></th>
             </tr>
             `
-        );
+            );
+        });
+        
     };
     $.ajax({
         async: true,
@@ -423,8 +426,134 @@
         async: true,
         type: "POST",
         url: "../Shop/GetAllShops",
-        success: function (reData) {
-            GetAllShops(reData);
+        success: function (data) {
+            GetAllShops(data);
+
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                //店铺功能
+                //删除
+                $(".AllShops .remove").on("click", function () {
+                    layer.open({
+                        type: 1,
+                        title: "刪除",
+                        content: `
+                        <div style='height:100px;width:300px;'></div>
+                        <div class="layui-input-block" style='margin-bottom:10px;'>
+                            <button class="layui-btn DeleteShopBtn">确认删除</button>
+                        </div>
+                        `
+                    });
+                    var ShopIds = $(this).parents("tr").find("td:nth(0)").text();
+                    $(".DeleteShopBtn").on("click", function () {
+                        console.log(ShopIds);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "../Shop/DeleteShop",
+                            data: { shopId: ShopIds },
+                            success: function (reData) {
+                                console.log(reData);
+                                if (reData.Status == "ERR") { 
+                                    layer.close(layer.index);
+                                    var a = "更新失败，请重新尝试！";
+                                    //alert("更新失败，请重新尝试！");
+                                    layer.open({
+                                        type: 1,
+                                        title: "刪除",
+                                        content: `
+                                            <div style='height:100px;width:300px;'></div>
+                                            <div class="layui-input-block" style='margin-bottom:10px;'>`+a+`</div>
+                                            `
+                                    });
+                                }
+                                else {
+                                    $(".userTable tbody").remove();
+                                    GetAllShops(reData.data);
+                                    layer.close(layer.index);
+                                };
+
+                            },
+                            error: function () {
+                                alert("dasdasdasdas")
+                            }
+                        });
+                    });
+                });
+                //添加角色
+                $(".AllShops .addroleUpDate").on('click', function () {
+                    layer.open({
+                        type: 1,
+                        title: "添加角色",
+                        content: `
+                    <div class= "layui-form-item" >
+                        <label class="layui-form-label">角色名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="role" required lay-verify="required" placeholder="输入角色名称" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux" style='margin:0 50px;'>例如：user1</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                    `
+                    });
+                });
+                //storeTable
+                $(".AllShops .roleUpDate").on('click', function () {
+                    layer.open({
+                        type: 1,
+                        title: "修改",
+                        content: `
+                    <div class= "layui-form-item" >
+                      <div class="layui-form-item">
+                        <label class="layui-form-label">输入框</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleUpDateName' placeholder="请输入标题" autocomplete="off" class="layui-input roleUpDateName">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn roleUpDateBtns">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                    `
+                    });
+                });
+                $(".AllShops .AddRole").on('click', function () {
+                    console.log("dasdasaaaaaaaa")
+                    layer.open({
+                        type: 1,
+                        title: "添加",
+                        content: `
+                    <div class= "layui-form-item" >
+                      <div class="layui-form-item">
+                        <label class="layui-form-label">角色名</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddName' placeholder="请输入角色名" autocomplete="off" class="layui-input roleAddName">
+                        </div>
+                        <label class="layui-form-label">描述</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddTitle' placeholder="请输入描述" autocomplete="off" class="layui-input roleAddTitle">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn roleAddBtns">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                    `
+                    });
+                });
+            });
+
         }
     });
 };
