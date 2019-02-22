@@ -10,7 +10,9 @@
     }
     var searchName = getQueryString("name");
     var searchNameUrl = decodeURIComponent(searchName);
-
+    $("#storeFun").on("click", function () {
+        window.location.href = 'StoreFun'
+    });
     console.log(searchNameUrl);
     //var pay = $("input[type='checkbox']:checked");
 
