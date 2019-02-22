@@ -42,9 +42,9 @@
                 <td>`+ this.Addr + `</td>
                 <td>`+ this.Phone + `</td>
                 <th>`+ (this.ApplyStaus == '0' ? '未通过' : '通过') + `</th>
-                <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
-                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
-                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingShop">修改</button></th>
+                <td><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></td>
+                <td><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></td>
+                <td><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingShop">修改</button></td>
             </tr>
             `
             );
@@ -517,7 +517,7 @@
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateShopInfo",
+                            url: "../Shop/AddOrUpdateRole",
                             data: { Id: shopId, Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone },
                             success: function (reData) {
                                 console.log(reData);
@@ -603,7 +603,7 @@
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateShopInfo",
+                            url: "../Shop/AddOrUpdateRole",
                             data: { Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone},
                             success: function (reData) {
                                 console.log(reData);
