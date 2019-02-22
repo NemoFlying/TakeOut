@@ -83,11 +83,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>用户名</th>
-                                    <th>地址</th>
-                                    <th>电话</th>
-                                    <th>申请状态</th>
-                                    <th>审核</th>
+                                    <th>菜品</th>
+                                    <th>价格</th>
+                                    <th>图片</th>
+                                    <th>单位</th>
+                                    <th>销量</th>
                                     <th colspan="2">修改</th>
 
                                 </tr>
@@ -114,7 +114,7 @@
         </div>
     </div>
     <script src="~/Scripts/js/layui.js"></script>
-    <script src="~/Scripts/js/index.js"></script>
+    @*<script src="~/Scripts/js/index.js"></script>*@
     <script>
         $(function () {
             $.post("../User/GetAllUser", {}, function (reData) {

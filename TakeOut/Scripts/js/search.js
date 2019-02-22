@@ -11,11 +11,11 @@
     var searchName = getQueryString("name");
     var searchNameUrl = decodeURIComponent(searchName);
     $("#storeFun").on("click", function () {
-        window.location.href = 'StoreFun'
+        window.location.href = 'storeFun'
     });
     console.log(searchNameUrl);
     //var pay = $("input[type='checkbox']:checked");
-
+    
     $(".chooseBtn").on("click", function () {
         var Id = $(this).parents("tr").find("td:nth(0)").text();
         var Name = $(this).parents("tr").find("td:nth(0)").text();
