@@ -1,4 +1,5 @@
 ﻿window.onload = function () {
+    var index = parent.layer.getFrameIndex(window.name);
     function ajaxData(data) {
         $(data).each(function () {
             $(".userTable tbody").append(`
