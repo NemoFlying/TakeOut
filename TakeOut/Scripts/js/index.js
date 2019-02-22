@@ -517,7 +517,7 @@
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateRole",
+                            url: "../Shop/AddOrUpdateShopInfo",
                             data: { Id: shopId, Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone },
                             success: function (reData) {
                                 console.log(reData);
@@ -603,7 +603,7 @@
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateRole",
+                            url: "../Shop/AddOrUpdateShopInfo",
                             data: { Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone},
                             success: function (reData) {
                                 console.log(reData);
