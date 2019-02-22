@@ -8,7 +8,6 @@ namespace TakeOut.BLL.Dto
 {
     public class ShopInfoInput
     {
-        [Required]
         public int Id { get; set; }
 
         /// <summary>

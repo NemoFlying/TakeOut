@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TakeOut.BLL.Dto;
 using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
@@ -13,6 +14,6 @@ namespace TakeOut.Controllers
         /// <summary>
         /// 全局用户信息
         /// </summary>
-        protected UserInfo GuserInfo => (UserInfo)HttpContext.Session["userinfo"];
+        protected UserInfoOutput GuserInfo => (UserInfoOutput)HttpContext.Session["userinfo"];
     }
 }

@@ -9,30 +9,30 @@ using TakeOut.Models;
 
 namespace TakeOut.BLL
 {
-    public class OrderService
+    public class OrderService: IOrderService
     {
         private readonly IOrderDAL _orderDAL;
         private readonly IUserDAL _userDAL;
-        private readonly IOrderGoodsDAL _orderGoodsDAL;
+        //private readonly IOrderGoodsDAL _orderGoodsDAL;
         private readonly IGoodsDAL _goodsDAL;
 
         public OrderService()
         {
             _orderDAL = new OrderDAL();
             _goodsDAL = new GoodsDAL();
-            _orderGoodsDAL = new OrderGoodsDAL();
+            //_orderGoodsDAL = new OrderGoodsDAL();
             _userDAL = new UserDAL();
 
         }
         /// <summary>
-        /// 获得所有订单列表
+        /// 根据店铺获得所有订单信息【一个订单上只能是同一个商家】
         /// </summary>
         /// <returns></returns>
-        public List<Order> GetAllShopsInfo()
+        public List<Order> GetAllOrderByShopId(int shopId)
         {
             try
             {
-                return _orderDAL.GetModels(con => 1 == 1).ToList();
+                return _orderDAL.GetModels(con => con.Shop.Id == shopId).ToList();
             }
             catch
             {
@@ -51,13 +51,8 @@ namespace TakeOut.BLL
             _orderDAL.Delete(
                 _orderDAL.GetModels(con => con.Id == orderId).FirstOrDefault()
                 );
-            //删除订单商品商店产品信息
-            _orderGoodsDAL.GetModels(con => con.OrderInfo.Id == orderId)
-                .ToList()
-                .ForEach(item => _orderGoodsDAL.Delete(item));
             try
             {
-                _orderGoodsDAL.SaveChanges();
                  _orderDAL.SaveChanges();
                 return true;
             }
@@ -95,24 +90,15 @@ namespace TakeOut.BLL
         /// <returns></returns>
         public bool CreateOrder(OrderInfoInput newOrder,List<int>goodsIds,int reqUserId)
         {
-            //基本信息
             var order = new Order();
             order = Mapper.Map(newOrder, order);
+            order.Goods = _goodsDAL.GetModels(con => goodsIds.Contains(con.Id)).ToList();
+            order.Shop = order.Goods.FirstOrDefault().Shop;
             order.OrderUser = _userDAL.GetModels(con => con.Id == reqUserId).FirstOrDefault();
             _orderDAL.Add(order);
-            goodsIds.ForEach(goodsId =>
-            {
-                _orderGoodsDAL.Add(new OrderGoods()
-                {
-                    GoodsInfo = _goodsDAL.GetModels(con => con.Id == goodsId).FirstOrDefault(),
-                    OrderInfo = order,
-                    GoodsNum = 1
-                });
-            });
             try
             {
                 _orderDAL.SaveChanges();
-                 _orderGoodsDAL.SaveChanges();
                 return true;
             }
             catch
