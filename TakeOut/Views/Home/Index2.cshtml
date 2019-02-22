@@ -57,7 +57,7 @@
         <div class="layui-col-md12 itemsBody">
             <div class="layui-form-item">
                 <div class="layui-input-block searchItem " style="margin:0;">
-                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input searchInput">
+                    <input type="text" name="title" id="searchVal" required lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input searchInput">
                     <button type="button" class="layui-btn layui-btn-normal search" >搜索</button>
                 </div>
             </div>
@@ -66,6 +66,7 @@
     <script src="~/Scripts/js/layui.js"></script>
     <script src="~/Scripts/js/index2.js"></script>
     <script>
+        
         //JavaScript代码区域
         //Demo
         layui.use('form', function () {
@@ -84,6 +85,7 @@
 
             //…
         });
+
 
     </script>
 </body>
