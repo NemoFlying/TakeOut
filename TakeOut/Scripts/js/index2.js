@@ -5,4 +5,7 @@
         var searchVal = $(this).parents().find(".searchInput").val();
         window.location.href = 'search?name=' + searchVal;
     });
+    $("#Admin").on("click", function () {
+        window.location.href = 'index';
+    });
 };

@@ -27,7 +27,6 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item"><button onclick = "package()" id="payForBtn" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe657;</i>结算</button></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
@@ -64,12 +63,11 @@
                         <td>20</td>
                         <td><img src="#" alt="Alternate Text" /></td>
                         <td>
-                            <form class="layui-form" action="">
-                                <div class="layui-input-block">
 
-                                    <input class='chooseBtn' type="checkbox" name="like[payFor]" title="购买">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger chooseBtn">购买</button>
+                                    @*<input class='chooseBtn' type="checkbox" name="like[payFor]" title="购买">*@
                                 </div>
-                            </form>
                         </td>
                     </tr>
                 </tbody>
