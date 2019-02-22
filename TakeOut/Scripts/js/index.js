@@ -44,7 +44,7 @@
                 <th>`+ (this.ApplyStaus == '0' ? '未通过' : '通过') + `</th>
                 <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
                 <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
-                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingRole">修改</button></th>
+                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingShop">修改</button></th>
             </tr>
             `
             );
@@ -468,7 +468,7 @@
                                     });
                                 }
                                 else {
-                                    $(".userTable tbody").remove();
+                                    $(".AllShops tbody").remove();
                                     GetAllShops(reData.data);
                                     layer.close(layer.index);
                                 };
@@ -480,26 +480,68 @@
                         });
                     });
                 });
-                //添加角色
-                $(".AllShops .addroleUpDate").on('click', function () {
+                //修改店铺
+                $(".AllShops .settingShop").on('click', function () {
+                    var shopId = $(this).parents("tr").find("td:nth(0)").text();
                     layer.open({
                         type: 1,
-                        title: "添加角色",
+                        title: "修改店铺",
                         content: `
-                    <div class= "layui-form-item" >
-                        <label class="layui-form-label">角色名</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="role" required lay-verify="required" placeholder="输入角色名称" autocomplete="off" class="layui-input">
-                        </div>
-                        <div class="layui-form-mid layui-word-aux" style='margin:0 50px;'>例如：user1</div>
-                    </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                        </div>
-                    </div>
+                            <div class= "layui-form-item shopAll" >
+                              <div class="layui-form-item">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-block">
+                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdateName' placeholder="请输入角色名" autocomplete="off" class="layui-input shopUpdateName">
+                                </div>
+                                <label class="layui-form-label">地址</label>
+                                <div class="layui-input-block">
+                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdateAddr' placeholder="请输入地址" autocomplete="off" class="layui-input shopUpdateAddr">
+                                </div>
+                                <label class="layui-form-label">电话</label>
+                                <div class="layui-input-block">
+                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdatePhone' placeholder="请输入电话" autocomplete="off" class="layui-input shopUpdatePhone">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn shopUpdateBtn">立即提交</button>
+                                </div>
+                            </div>
                     `
+                    });
+                    $(".shopUpdateBtn").on("click", function () {
+                        var shopName = $("#shopAddName").val();
+                        var shopAddAddr = $("#shopAddAddr").val();
+                        var shopAddPhone = $("#shopAddPhone").val();
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "../Shop/AddOrUpdateRole",
+                            data: { Id: shopId, Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone },
+                            success: function (reData) {
+                                console.log(reData);
+                                if (reData.Status == "ERR") {
+                                    layer.close(layer.index);
+                                    var a = "修改失败，请重新尝试！";
+                                    layer.open({
+                                        type: 1,
+                                        title: "修改",
+                                        content: `
+                                            <div style='height:100px;width:300px;'></div>
+                                            <div class="layui-input-block" style='margin-bottom:10px;'>`+ a + `</div>
+                                            `
+                                    });
+                                }
+                                else {
+                                    $(".AllShops tbody").remove();
+                                    GetAllShops(reData.data);
+                                    layer.close(layer.index);
+                                };
+
+                            }
+
+                        });
                     });
                 });
                 //storeTable
@@ -525,31 +567,68 @@
                     `
                     });
                 });
-                $(".AllShops .AddRole").on('click', function () {
-                    console.log("dasdasaaaaaaaa")
+                //添加
+                $(".AllShops .AddShop").on('click', function () {
                     layer.open({
                         type: 1,
                         title: "添加",
                         content: `
-                    <div class= "layui-form-item" >
+                    <div class= "layui-form-item shopAll" >
                       <div class="layui-form-item">
-                        <label class="layui-form-label">角色名</label>
+                        <label class="layui-form-label">用户名</label>
                         <div class="layui-input-block">
-                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddName' placeholder="请输入角色名" autocomplete="off" class="layui-input roleAddName">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopAddName' placeholder="请输入角色名" autocomplete="off" class="layui-input shopAddName">
                         </div>
-                        <label class="layui-form-label">描述</label>
+                        <label class="layui-form-label">地址</label>
                         <div class="layui-input-block">
-                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddTitle' placeholder="请输入描述" autocomplete="off" class="layui-input roleAddTitle">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopAddAddr' placeholder="请输入地址" autocomplete="off" class="layui-input shopAddAddr">
+                        </div>
+                        <label class="layui-form-label">电话</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopAddPhone' placeholder="请输入电话" autocomplete="off" class="layui-input shopAddPhone">
                         </div>
                       </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn roleAddBtns">立即提交</button>
-                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            <button class="layui-btn shopAddBtns">立即提交</button>
                         </div>
                     </div>
                     `
+                    });
+                    $(".shopAddBtns").on("click", function () {
+                        var shopName = $("#shopAddName").val();
+                        var shopAddAddr = $("#shopAddAddr").val();
+                        var shopAddPhone = $("#shopAddPhone").val();
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "../Shop/AddOrUpdateRole",
+                            data: { Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone},
+                            success: function (reData) {
+                                console.log(reData);
+
+                                if (reData.Status == "ERR") {
+                                    layer.close(layer.index);
+                                    var a = "添加失败，请重新尝试！";
+                                    layer.open({
+                                        type: 1,
+                                        title: "添加",
+                                        content: `
+                                            <div style='height:100px;width:300px;'></div>
+                                            <div class="layui-input-block" style='margin-bottom:10px;'>`+ a + `</div>
+                                            `
+                                    });
+                                }
+                                else {
+                                    $(".AllShops tbody").remove();
+                                    GetAllShops(reData.data);
+                                    layer.close(layer.index);
+                                };
+
+                            }
+
+                        });
                     });
                 });
             });
