@@ -10,19 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>管理员首页</title>
     <link rel="stylesheet" href="~/css/layui.css">
-    <style>
-        .searchItem{
-            display: flex;
-        }
-        .searchInput{
-            width:300px;
-        }
-        .itemsBody {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -40,7 +27,7 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item"><button id="Admin" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe66f;</i>管理员</button></li>
+                <li class="layui-nav-item"><button id="storeFun" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"><i class="layui-icon">&#xe66f;</i>商店管理</button></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
@@ -55,39 +42,40 @@
             </ul>
         </div>
 
-        <div class="layui-col-md12 itemsBody">
-            <div class="layui-form-item">
-                <div class="layui-input-block searchItem " style="margin:0;">
-                    <input type="text" name="title" id="searchVal" required lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input searchInput">
-                    <button type="button" class="layui-btn layui-btn-normal search" >搜索</button>
-                </div>
-            </div>
+        <div class="layui-col-md12">
+            <table class="layui-table storeTable" lay-filter="shopStore">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>菜名</th>
+                        <th>价格</th>
+                        <th>店铺</th>
+                        <th>销量</th>
+                        <th>图片</th>
+                        <th width="10%">购买</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>阿薩德</td>
+                        <td>10</td>
+                        <td>大大</td>
+                        <td>20</td>
+                        <td><img src="#" alt="Alternate Text" /></td>
+                        <td>
+
+                                <div class="layui-input-block">
+                                    <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger chooseBtn">购买</button>
+                                    @*<input class='chooseBtn' type="checkbox" name="like[payFor]" title="购买">*@
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <script src="~/Scripts/js/layui.js"></script>
-    <script src="~/Scripts/js/index2.js"></script>
-    <script>
-        
-        //JavaScript代码区域
-        //Demo
-        layui.use('form', function () {
-            var form = layui.form;
-
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
-
-        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
-        layui.use('element', function () {
-            var element = layui.element;
-
-            //…
-        });
-
-
-    </script>
+    <script src="~/scripts/js/search.js"></script>
 </body>
 </html>

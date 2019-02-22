@@ -23,13 +23,6 @@ namespace TakeOut.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// 下订单用户
-        /// </summary>
-        [Required]
-        public virtual User OrderUser { get; set; }
-
-
-        /// <summary>
         /// 地址
         /// </summary>
         [Required]
@@ -51,7 +44,7 @@ namespace TakeOut.Models
         public string Phone { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 备注
         /// </summary>
         public string Remarks { get; set; }
 
@@ -64,6 +57,7 @@ namespace TakeOut.Models
         [Required]
         public int OrderStaus { get; set; }
 
+
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -71,8 +65,20 @@ namespace TakeOut.Models
         public DateTime CreateDate { get; set; }
 
 
+        ///// <summary>
+        ///// 下订单用户
+        ///// </summary>
+        public virtual User OrderUser { get; set; }
 
-        
+        /// <summary>
+        /// 商家信息
+        /// </summary>
+        public virtual Shop Shop { get; set; }
 
+        /// <summary>
+        /// 与产品多对多
+        /// </summary>
+        //public ICollection<OrderGoods> OrderGoods { get; set; }
+        public ICollection<Goods> Goods { get; set; }
     }
 }

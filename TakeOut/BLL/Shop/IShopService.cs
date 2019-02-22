@@ -28,7 +28,7 @@ namespace TakeOut.BLL
         /// </summary>
         /// <param name="shopInput"></param>
         /// <returns></returns>
-        bool AddOrUpdateShopInfo(ShopInfoInput shopInput);
+        bool AddOrUpdateShopInfo(ShopInfoInput shopInput,int currentUid);
 
         /// <summary>
         /// 店铺申请审批

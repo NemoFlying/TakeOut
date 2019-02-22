@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\BaseService.cs" />
     <Compile Include="BLL\Goods\Dto\GoodsInfoInput.cs" />
+    <Compile Include="BLL\Goods\Dto\GoodsInfoOutput.cs" />
     <Compile Include="BLL\Goods\GoodsService.cs" />
     <Compile Include="BLL\Goods\IGoodsService.cs" />
     <Compile Include="BLL\IBaseService.cs" />
@@ -179,7 +180,9 @@
     <Compile Include="BLL\User\Dto\UserInfoOutput.cs" />
     <Compile Include="BLL\User\IUserService.cs" />
     <Compile Include="BLL\User\UserService.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\TakeOutBaseController.cs" />
@@ -188,14 +191,10 @@
     <Compile Include="DAL\Goods\GoodsDAL.cs" />
     <Compile Include="DAL\Goods\IGoodsDAL.cs" />
     <Compile Include="DAL\IBaseDAL.cs" />
-    <Compile Include="DAL\OrderGoods\IOrderGoodsDAL.cs" />
-    <Compile Include="DAL\OrderGoods\OrderGoodsDAL.cs" />
     <Compile Include="DAL\Order\IOrderDAL.cs" />
     <Compile Include="DAL\Order\OrderDAL.cs" />
     <Compile Include="DAL\Role\IRoleDAL.cs" />
     <Compile Include="DAL\Role\RoleDAL.cs" />
-    <Compile Include="DAL\ShopGoods\IShopGoodsDAL.cs" />
-    <Compile Include="DAL\ShopGoods\ShopGoodsDAL.cs" />
     <Compile Include="DAL\Shop\IShopDAL.cs" />
     <Compile Include="DAL\Shop\ShopDAL.cs" />
     <Compile Include="DAL\TakeOutContext.cs" />
@@ -209,16 +208,16 @@
     </Compile>
     <Compile Include="Models\Goods.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderGoods.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Shop.cs" />
-    <Compile Include="Models\ShopGoods.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GoodsOutputViewModel.cs" />
     <Compile Include="ViewModels\JsonReMsg.cs" />
+    <Compile Include="ViewModels\OrderOutPutViewModel.cs" />
     <Compile Include="ViewModels\SelectOptionModel.cs" />
-    <Compile Include="ViewModels\UserInfo.cs" />
+    <Compile Include="ViewModels\ShopOutPutViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -273,6 +272,7 @@
     <Content Include="Scripts\js\css\modules\layer\default\loading-1.gif" />
     <Content Include="Scripts\js\css\modules\layer\default\loading-2.gif" />
     <Content Include="Scripts\js\index.js" />
+    <Content Include="Scripts\js\index2.js" />
     <Content Include="Scripts\js\layui-index.js" />
     <Content Include="Scripts\js\layui.js" />
     <Content Include="Scripts\js\lay\modules\carousel.js" />
@@ -295,6 +295,7 @@
     <Content Include="Scripts\js\lay\modules\upload.js" />
     <Content Include="Scripts\js\lay\modules\util.js" />
     <Content Include="Scripts\js\logon.js" />
+    <Content Include="Scripts\js\search.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -314,9 +315,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Home\search.cshtml" />
+    <Content Include="Views\Home\StoreFun.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Goods\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\Role\" />
     <Folder Include="Views\Shop\" />
     <Folder Include="Views\TakeOutBase\" />

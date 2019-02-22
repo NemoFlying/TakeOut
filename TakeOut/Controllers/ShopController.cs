@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,13 +29,13 @@ namespace TakeOut.Controllers
         /// 获取店铺列表
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult GetAllShops()
         {
-            return Json(_shopService.GetAllShopsInfo(), JsonRequestBehavior.AllowGet);
+            return Json(Mapper.Map<List<ShopOutPutViewModel>> (_shopService.GetAllShopsInfo()), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// 
         /// ById删除店铺
         /// </summary>
         /// <param name="shopId"></param>
@@ -49,7 +50,7 @@ namespace TakeOut.Controllers
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map <List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
 
@@ -61,17 +62,17 @@ namespace TakeOut.Controllers
         /// <param name="newShop"></param>
         /// <returns></returns>
         /// <summary>
-        public JsonResult AddOrUpdateRole(ShopInfoInput newShop)
+        public JsonResult AddOrUpdateShop(ShopInfoInput newShop)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _shopService.AddOrUpdateShopInfo(newShop) ? "OK" : "ERR";
+            re.Status = _shopService.AddOrUpdateShopInfo(newShop,GuserInfo.Id) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map<List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
@@ -90,7 +91,7 @@ namespace TakeOut.Controllers
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map<List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }

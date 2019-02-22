@@ -84,13 +84,14 @@ namespace TakeOut.BLL
             if(userInfo != null)
             {
                 //获取用户组信息【当前用户只能具有一个权限】
-                var role = _userRoleDAL
-                    .GetModels(con => con.UId == user.Id)
+                var userRole = _userRoleDAL
+                    .GetModels(con2 => con2.UId == user.Id)
                     .FirstOrDefault();
+                var role = _roleDAL.GetModels(con => con.Id == userRole.RId).FirstOrDefault();
                 if(role!=null)
                 {
-                    userInfo.RoleName = role.LogonRole.Name;
-                    userInfo.RoleLocked = role.LogonRole.Locked;
+                    userInfo.RoleName = role.Name;
+                    userInfo.RoleLocked = role.Locked;
                 }
                 //获取商家信息
                 var shop = _shopDAL

@@ -9,25 +9,27 @@ using TakeOut.Models;
 
 namespace TakeOut.BLL
 {
-    public class GoodsService
+    public class GoodsService : IGoodsService
     {
         private readonly IGoodsDAL _goodsDAL;
         private readonly IShopDAL _shopDAL;
-        private readonly IShopGoodsDAL _shopGoodsDAL;
         public GoodsService()
         {
             _goodsDAL = new GoodsDAL();
-            _shopGoodsDAL = new ShopGoodsDAL();
+            _shopDAL = new ShopDAL();
         }
+
+
+
         /// <summary>
         /// 获得所有产品列表
         /// </summary>
         /// <returns></returns>
-        public List<Goods> GetAllGoodsInfo()
+        public List<Goods> GetAllGoodsByShopId(int shopId)
         {
             try
             {
-                return _goodsDAL.GetModels(con => 1 == 1).ToList();
+                return _goodsDAL.GetModels(con => con.Shop.Id == shopId).ToList();
             }
             catch
             {
@@ -37,11 +39,28 @@ namespace TakeOut.BLL
         }
 
         /// <summary>
+        /// 根据产品名称获取模糊查找
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        public List<Goods> GetGoodsByName(string productName)
+        {
+            try
+            {
+                return _goodsDAL.GetModels(con => con.Name.Contains(productName)).ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 根据ID删除产品
         /// </summary>
         /// <param name="Ids"></param>
         /// <returns></returns>
-        public bool DeleteModlesByIds(List<int> GoodsIds)
+        public bool DeleteProductByIds(List<int> GoodsIds)
         {
             GoodsIds.ForEach(id =>
             {
@@ -50,15 +69,10 @@ namespace TakeOut.BLL
                     _goodsDAL.GetModels(con => con.Id == id)
                     .FirstOrDefault()
                     );
-                //删除产品商店列表
-                _shopGoodsDAL.GetModels(con => con.GoodsInfo.Id == id)
-                .ToList()
-                .ForEach(item => _shopGoodsDAL.Delete(item));
             });
             
             try
             {
-                _shopGoodsDAL.SaveChanges();
                 _goodsDAL.SaveChanges();
                 return true;
             }
@@ -74,24 +88,14 @@ namespace TakeOut.BLL
         /// </summary>
         /// <param name="newRole"></param>
         /// <returns></returns>
-
-        public bool AddGoodsModle(GoodsInfoInput newGoods, int shopId)
+        public bool AddGoodsInfo(GoodsInfoInput newGoods, int shopId)
         {
             //添加基本信息
             var goods = Mapper.Map<Goods>(newGoods);
-           // _goodsDAL.Add(goods);
-            //添加产品商店对应
-            _shopGoodsDAL.Add(
-                new ShopGoods()
-                {
-                    GoodsInfo = goods,
-                    ShopInfo = _shopDAL.GetModels(con => con.Id == shopId).FirstOrDefault()
-                }
-                );
+            goods.Shop = _shopDAL.GetModels(con => con.Id == shopId).FirstOrDefault();
             try
             {
-                //_goodsDAL.SaveChanges();
-                _shopGoodsDAL.SaveChanges();
+                _goodsDAL.SaveChanges();
                 return true;
             }
             catch
@@ -106,8 +110,7 @@ namespace TakeOut.BLL
         /// </summary>
         /// <param name="newRole"></param>
         /// <returns></returns>
-
-        public bool UpdateRoleModle(GoodsInfoInput newGoods)
+        public bool UpdateProductInfo(GoodsInfoInput newGoods)
         {
             var goods = _goodsDAL.GetModels(con => con.Id == newGoods.Id.Value).FirstOrDefault();
                 _goodsDAL.Update(Mapper.Map(newGoods, goods));
