@@ -10,6 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>管理员首页</title>
     <link rel="stylesheet" href="~/css/layui.css">
+    <style>
+        .searchItem{
+            display: flex;
+        }
+        .searchInput{
+            width:300px;
+        }
+        .itemsBody {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -41,15 +54,17 @@
             </ul>
         </div>
 
-        <div class="layui-col-md12"  style="display:flex;justify-content:center;align-items:center;height:800px;">
+        <div class="layui-col-md12 itemsBody">
             <div class="layui-form-item">
-                <div class="layui-input-block" style="margin:0;">
-                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                <div class="layui-input-block searchItem " style="margin:0;">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input searchInput">
+                    <button type="button" class="layui-btn layui-btn-normal search" >搜索</button>
                 </div>
             </div>
         </div>
     </div>
     <script src="~/Scripts/js/layui.js"></script>
+    <script src="~/Scripts/js/index2.js"></script>
     <script>
         //JavaScript代码区域
         //Demo

@@ -1,5 +1,4 @@
 ﻿window.onload = function () {
-
     function ajaxData(data) {
         $(data).each(function () {
             $(".userTable tbody").append(`
@@ -30,6 +29,24 @@
                 </tr>
             `)
         });
+
+    };
+    function GetAllShops(data) {
+        console.log(data);
+        $(".AllShops tbody").append(
+            `
+            <tr>
+                <td>123456</td>
+                <td>贤心</td>
+                <td>jkgas12321</td>
+                <td>12345678901</td>
+                <th>审核中</th>
+                <th><button class="layui-btn layui-btn-sm layui-btn-radius isable">申请</button></th>
+                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger remove"><i class="layui-icon">&#xe640;</i></button></th>
+                <th><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal settingRole">修改</button></th>
+            </tr>
+            `
+        );
     };
     $.ajax({
         async: true,
@@ -248,6 +265,7 @@
         url: "../Role/GetAllRoles",
         success: function (reData) {
             GetAllRoles(reData);
+            //弹框点击事件
             layui.use('layer', function () {
                 var layer = layui.layer;
                 //角色管理功能
@@ -309,7 +327,35 @@
                     `
                     });
                 });
+                $(".RoleNames .AddRole").on('click', function () {
+                    console.log("dasdasaaaaaaaa")
+                    layer.open({
+                        type: 1,
+                        title: "添加",
+                        content: `
+                    <div class= "layui-form-item" >
+                      <div class="layui-form-item">
+                        <label class="layui-form-label">角色名</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddName' placeholder="请输入角色名" autocomplete="off" class="layui-input roleAddName">
+                        </div>
+                        <label class="layui-form-label">描述</label>
+                        <div class="layui-input-block">
+                          <input type="text" name="roleUpDateName" required  lay-verify="required" id='roleAddTitle' placeholder="请输入描述" autocomplete="off" class="layui-input roleAddTitle">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn roleAddBtns">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                    `
+                    });
+                });
             });
+            //提交数据更改
             $(".role .remove").on("click", function () {
                 var ID = $(this)[0].parentElement.parentElement.cells[0].title;
                 
@@ -322,7 +368,7 @@
                         url: "../Role/DeleteRole",
                         data: { roleId: ID},
                         success: function (reData) {
-                            console.log(reData)
+                            console.log(reData);
                             layer.close(layer.index);
                             $(".userTable tbody tr").remove();
                             GetAllRoles(reData.Data);
@@ -332,27 +378,53 @@
                 });
             });
             $(".role .roleUpDate").on("click", function () {
-                var Description = $(this).parents("tr").find("td:nth(1)").text();
+                //获取名称
+                var Description = $(this).parents("tr").find("td:nth(0)").text();
                 $(".roleUpDateBtns").on("click", function () {
+                    //获取描述
                     var roleUpDateName = $("#roleUpDateName").val();
-                    
-                    console.log(Description);
                     $.ajax({
                         async: true,
                         type: "POST",
                         url: "../Role/AddOrUpdateRole",
-                        data: { Name: roleUpDateName},
+                        data: { Name: Description, Description: roleUpDateName },
                         success: function (reData) {
-                            console.log(reData)
-                            //layer.close(layer.index);
-                            //$(".userTable tbody tr").remove();
-                            //GetAllRoles(reData.Data);
-                            //Description
+                            layer.close(layer.index);
+                            $(".RoleNames tbody tr").remove();
+                            GetAllRoles(reData.Data);
                         }
                     });
                 });
             });
+            $(".RoleNames .AddRole").on("click", function () {
+                $(".roleAddBtns").on("click", function () {
+                    //获取描述
+                    var roleAddName = $("#roleAddName").val();
+                    var roleAddTitle = $("#roleAddTitle").val();
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "../Role/AddOrUpdateRole",
+                        data: { Name: roleAddName, Description: roleAddTitle },
+                        success: function (reData) {
+                            layer.close(layer.index);
+                            $(".RoleNames tbody tr").remove();
+                            GetAllRoles(reData.Data);
+                        }
+                    });
+                });
+            });
+
         }
 
+    });
+
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "../Shop/GetAllShops",
+        success: function (reData) {
+            GetAllShops(reData);
+        }
     });
 };
