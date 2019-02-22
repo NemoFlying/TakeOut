@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using TakeOut.Models;
@@ -92,6 +93,109 @@ namespace TakeOut.DAL
             };
             userRoles.ForEach(item => context.UserRole.Add(item));
             context.SaveChanges();
+
+            //产品信息
+            List<Goods> goods = new List<Goods>() {
+                new Goods()
+            {
+                Name = "Product",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            },
+                new Goods()
+            {
+                Name = "Product1",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            },
+                new Goods()
+            {
+                Name = "Product2",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            }
+        };
+            //店铺
+            List<Shop> shops = new List<Shop>() {
+                new Shop()
+            {
+                Name = "Shop1",
+                Locked = "N",
+                Addr = "成都",
+                ApplyStaus = 1,
+                Phone = "895190626",
+                Goods = new List<Goods>(){ goods[0] },
+                Keeper = context.User.Where(con => con.LogonUser == "admin").FirstOrDefault(),
+            },
+                new Shop()
+            {
+                Name = "Shop2",
+                Locked = "N",
+                Addr = "成都",
+                ApplyStaus = 1,
+                Phone = "895190626",
+                Goods = new List<Goods>(){ goods[1] },
+                Keeper = context.User.Where(con => con.LogonUser == "admin").FirstOrDefault(),
+            },
+                new Shop()
+            {
+                Name = "Shop3",
+                Locked = "N",
+                Addr = "成都",
+                ApplyStaus = 1,
+                Phone = "895190626",
+                Goods = new List<Goods>(){ goods[2] },
+                Keeper = context.User.Where(con => con.LogonUser == "admin").FirstOrDefault(),
+            }
+            };
+            shops.ForEach(item => context.Shop.Add(item));
+
+            context.SaveChanges();
+            List<Goods> goods2 = new List<Goods>() {
+                new Goods()
+            {
+                Name = "Product3",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            },
+                new Goods()
+            {
+                Name = "Product4",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            },
+                new Goods()
+            {
+                Name = "Product5",
+                Price = 10,
+                SalesNum = 100,
+                Stocks = 200,
+                Unit = "份",
+                Locked = "N"
+            }
+        };
+            goods2.ForEach(item => context.Goods.Add(item));
+
+            context.SaveChanges();
+            
+
+
+
         }
 
     }

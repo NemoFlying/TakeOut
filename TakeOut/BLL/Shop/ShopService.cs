@@ -16,13 +16,13 @@ namespace TakeOut.BLL
     {
         private readonly IShopDAL _shopDAL;
         private readonly IGoodsDAL _goodsDAL;
-        private readonly IShopGoodsDAL _shopGoodsDAL;
+        //private readonly IShopGoodsDAL _shopGoodsDAL;
 
         public ShopService()
         {
             _shopDAL = new ShopDAL();
             _goodsDAL = new GoodsDAL();
-            _shopGoodsDAL = new ShopGoodsDAL();
+            //_shopGoodsDAL = new ShopGoodsDAL();
 
 
         }
@@ -55,19 +55,8 @@ namespace TakeOut.BLL
             _shopDAL.Delete(
                 _shopDAL.GetModels(con => con.Id == shopId).FirstOrDefault()
                 );
-            //删除商店产品信息
-            _shopGoodsDAL.GetModels(con => con.ShopInfo.Id == shopId)
-                .ToList()
-                .ForEach(item =>
-                {
-                    _goodsDAL.Delete(_goodsDAL.GetModels(con => con.Id == item.GoodsInfo.Id).FirstOrDefault());
-                    _shopGoodsDAL.Delete(item);
-                });
-            
             try
             {
-                _goodsDAL.SaveChanges();
-                _shopGoodsDAL.SaveChanges();
                 _shopDAL.SaveChanges();
                 return true;
             }

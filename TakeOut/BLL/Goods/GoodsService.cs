@@ -13,11 +13,9 @@ namespace TakeOut.BLL
     {
         private readonly IGoodsDAL _goodsDAL;
         private readonly IShopDAL _shopDAL;
-        private readonly IShopGoodsDAL _shopGoodsDAL;
         public GoodsService()
         {
             _goodsDAL = new GoodsDAL();
-            _shopGoodsDAL = new ShopGoodsDAL();
         }
         /// <summary>
         /// 获得所有产品列表
@@ -50,15 +48,10 @@ namespace TakeOut.BLL
                     _goodsDAL.GetModels(con => con.Id == id)
                     .FirstOrDefault()
                     );
-                //删除产品商店列表
-                _shopGoodsDAL.GetModels(con => con.GoodsInfo.Id == id)
-                .ToList()
-                .ForEach(item => _shopGoodsDAL.Delete(item));
             });
             
             try
             {
-                _shopGoodsDAL.SaveChanges();
                 _goodsDAL.SaveChanges();
                 return true;
             }
@@ -81,17 +74,16 @@ namespace TakeOut.BLL
             var goods = Mapper.Map<Goods>(newGoods);
            // _goodsDAL.Add(goods);
             //添加产品商店对应
-            _shopGoodsDAL.Add(
-                new ShopGoods()
-                {
-                    GoodsInfo = goods,
-                    ShopInfo = _shopDAL.GetModels(con => con.Id == shopId).FirstOrDefault()
-                }
-                );
+            //_shopGoodsDAL.Add(
+            //    new ShopGoods()
+            //    {
+            //        GoodsInfo = goods,
+            //        ShopInfo = _shopDAL.GetModels(con => con.Id == shopId).FirstOrDefault()
+            //    }
+            //    );
             try
             {
-                //_goodsDAL.SaveChanges();
-                _shopGoodsDAL.SaveChanges();
+                _goodsDAL.SaveChanges();
                 return true;
             }
             catch

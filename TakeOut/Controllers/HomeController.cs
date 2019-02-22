@@ -16,6 +16,12 @@ namespace TakeOut.Controllers
         public ActionResult Index()
         {
             var kk = dbcontext.User.FirstOrDefault();
+            var kkk = dbcontext.Goods.Where(con=>con.Name== "Product1").FirstOrDefault();
+            var kkks = dbcontext.Shop.Where(
+                con => con.Goods.Contains(
+                    dbcontext.Goods.Where(con2 => con2.Name == "Product1").FirstOrDefault()
+                    )
+                );
             return View();
         }
         public ActionResult Index2()
