@@ -15,7 +15,6 @@
     });
     console.log(searchNameUrl);
     //var pay = $("input[type='checkbox']:checked");
-    
     $(".chooseBtn").on("click", function () {
         var Id = $(this).parents("tr").find("td:nth(0)").text();
         var Name = $(this).parents("tr").find("td:nth(0)").text();
