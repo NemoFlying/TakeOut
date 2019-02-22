@@ -33,7 +33,10 @@ namespace TakeOut.Controllers
         {
             return View();
         }
-
+        public ActionResult search()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
