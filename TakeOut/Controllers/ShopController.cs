@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,9 +29,10 @@ namespace TakeOut.Controllers
         /// 获取店铺列表
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult GetAllShops()
         {
-            return Json(_shopService.GetAllShopsInfo(), JsonRequestBehavior.AllowGet);
+            return Json(Mapper.Map < List<ShopOutPutViewModel> > (_shopService.GetAllShopsInfo()), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
