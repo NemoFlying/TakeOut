@@ -1,5 +1,5 @@
 ﻿window.onload = function () {
-    var index = parent.layer.getFrameIndex(window.name);
+    //var index = parent.layer.getFrameIndex(window.name);
     function ajaxData(data) {
         $(data).each(function () {
             $(".userTable tbody").append(`
@@ -18,7 +18,6 @@
         });
     };
     function GetAllRoles(data) {
-        console.log(data)
         $(data).each(function () {
             //console.log(this)
             $(".role").append(`
