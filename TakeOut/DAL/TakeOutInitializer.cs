@@ -44,7 +44,8 @@ namespace TakeOut.DAL
                     Sex="M",
                     Phone="123",
                     Addr="地址",
-                    Locked="N"                   
+                    Locked="N" ,
+                    Roles = new List<Role>(){roles[0] }
                 },
                 new User()
                 {
@@ -54,7 +55,8 @@ namespace TakeOut.DAL
                     Sex="M",
                     Phone="123",
                     Addr="地址",
-                    Locked="N"
+                    Locked="N",
+                    Roles = new List<Role>(){roles[1] }
                 },
                 new User()
                 {
@@ -64,34 +66,11 @@ namespace TakeOut.DAL
                     Sex="M",
                     Phone="123",
                     Addr="地址",
-                    Locked="N"
+                    Locked="N",
+                    Roles = new List<Role>(){roles[1] }
                 }
             };
             users.ForEach(item => context.User.Add(item));
-            context.SaveChanges();
-
-            //用户角色
-            var userRoles = new List<UserRole>()
-            {
-                new UserRole(){
-                    UId = context.User.Where(con=>con.LogonUser=="Nemo").FirstOrDefault().Id,
-                    RId = context.Role.Where(con=>con.Name=="user").FirstOrDefault().Id,
-                    CreateDate = DateTime.Now
-                },
-                new UserRole()
-                {
-                    UId = context.User.Where(con=>con.LogonUser=="admin").FirstOrDefault().Id,
-                    RId = context.Role.Where(con=>con.Name=="admin").FirstOrDefault().Id,
-                    CreateDate = DateTime.Now
-                },
-                new UserRole()
-                {
-                    UId = context.User.Where(con=>con.LogonUser=="Jerry").FirstOrDefault().Id,
-                    RId = context.Role.Where(con=>con.Name=="business").FirstOrDefault().Id,
-                    CreateDate = DateTime.Now
-                }
-            };
-            userRoles.ForEach(item => context.UserRole.Add(item));
             context.SaveChanges();
 
             //产品信息
@@ -215,5 +194,6 @@ namespace TakeOut.DAL
 
         }
 
+        
     }
 }

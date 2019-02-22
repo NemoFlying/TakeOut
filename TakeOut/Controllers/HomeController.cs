@@ -31,6 +31,7 @@ namespace TakeOut.Controllers
 
         public ActionResult Logon()
         {
+            var kk = dbcontext.User.FirstOrDefault();
             return View();
         }
         public ActionResult search()

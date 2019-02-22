@@ -19,12 +19,12 @@ namespace TakeOut.DAL
         public DbSet<Role> Role { get; set; }
         public DbSet<Shop> Shop { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<UserRole> UserRole { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //指定单数形式的表名
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Configurations.Add(new RoleMap());
         }
 
     }

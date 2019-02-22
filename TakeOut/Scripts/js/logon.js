@@ -27,7 +27,7 @@ window.onload = function () {
                 async: true,
                 type: "POST",
                 url: "../User/RegistUser",
-                data: { LogonUser: UserName, Password: password },
+                data: { LogonUser: UserName, Password: password, Sex: sex, HeadPortrait:"../img/header.png" },
                 success: function (data) {
                     console.log(data);
                     if (data.Status == "OK") {

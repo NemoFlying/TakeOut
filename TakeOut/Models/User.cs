@@ -47,19 +47,18 @@ namespace TakeOut.Models
         /// <summary>
         /// 联系电话
         /// </summary>
-        [MaxLength(20)]
         public string Phone { get; set; }
 
         /// <summary>
         /// 头像地址
         /// </summary>
         [MaxLength(150)]
+        [Required]
         public string HeadPortrait { get; set; }
 
         /// <summary>
         /// 地址
         /// </summary>
-        [MaxLength(150)]
         public string Addr { get; set; }
 
         /// <summary>
@@ -75,7 +74,7 @@ namespace TakeOut.Models
         /// </summary>
         public DateTime CreateDate { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { set; get; }
+        public virtual ICollection<Role> Roles { set; get; }
 
     }
 }

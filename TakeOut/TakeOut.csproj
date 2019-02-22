@@ -199,8 +199,6 @@
     <Compile Include="DAL\Shop\ShopDAL.cs" />
     <Compile Include="DAL\TakeOutContext.cs" />
     <Compile Include="DAL\TakeOutInitializer.cs" />
-    <Compile Include="DAL\UserRole\IUserRoleDAL.cs" />
-    <Compile Include="DAL\UserRole\UserRoleDAL.cs" />
     <Compile Include="DAL\User\IUserDAL.cs" />
     <Compile Include="DAL\User\UserDAL.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,9 +207,9 @@
     <Compile Include="Models\Goods.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RoleMap.cs" />
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\GoodsOutputViewModel.cs" />
     <Compile Include="ViewModels\JsonReMsg.cs" />
