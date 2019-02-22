@@ -32,7 +32,7 @@ namespace TakeOut.Controllers
         [HttpPost]
         public JsonResult GetAllShops()
         {
-            return Json(Mapper.Map < List<ShopOutPutViewModel> > (_shopService.GetAllShopsInfo()), JsonRequestBehavior.AllowGet);
+            return Json(Mapper.Map<List<ShopOutPutViewModel>> (_shopService.GetAllShopsInfo()), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace TakeOut.Controllers
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map <List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
 
@@ -72,7 +72,7 @@ namespace TakeOut.Controllers
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map<List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
@@ -91,7 +91,7 @@ namespace TakeOut.Controllers
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = Mapper.Map<List<ShopOutPutViewModel>>(_shopService.GetAllShopsInfo());
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
