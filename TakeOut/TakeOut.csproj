@@ -317,6 +317,7 @@
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\Home\search.cshtml" />
+    <Content Include="Views\Home\StoreFun.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

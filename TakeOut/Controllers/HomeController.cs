@@ -37,6 +37,11 @@ namespace TakeOut.Controllers
         {
             return View();
         }
+        public ActionResult StoreFun()
+        {
+            return View();
+        }
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
