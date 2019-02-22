@@ -16,6 +16,7 @@ namespace TakeOut.BLL
         public GoodsService()
         {
             _goodsDAL = new GoodsDAL();
+            _shopDAL = new ShopDAL();
         }
 
 
@@ -35,6 +36,23 @@ namespace TakeOut.BLL
                 return null;
             }
 
+        }
+
+        /// <summary>
+        /// 根据产品名称获取模糊查找
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        public List<Goods> GetGoodsByName(string productName)
+        {
+            try
+            {
+                return _goodsDAL.GetModels(con => con.Name.Contains(productName)).ToList();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
