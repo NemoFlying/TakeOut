@@ -331,15 +331,18 @@
                 });
             });
             $(".role .roleUpDate").on("click", function () {
-                
 
+                console.log($(this).parents("tr").find("td:nth(0)").text());
                 var roleUpDateName = $(".roleUpDateName");
                 var roleUpDateNames = $(".roleUpDateName")[0].Value;
                 console.log(roleUpDateName)
                 console.log(roleUpDateNames)
                 $(".roleUpDateBtns").on("click", function () {
-                    console.log("123456")
+                    console.log($(".roleUpDateName").val());
+                    console.log("123456");
+                    //console.log($(this));
                 });
+
             });
         }
 
