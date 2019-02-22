@@ -62,7 +62,7 @@ namespace TakeOut.Controllers
         /// <param name="newShop"></param>
         /// <returns></returns>
         /// <summary>
-        public JsonResult AddOrUpdateRole(ShopInfoInput newShop)
+        public JsonResult AddOrUpdateShop(ShopInfoInput newShop)
         {
             JsonReMsg re = new JsonReMsg();
             re.Status = _shopService.AddOrUpdateShopInfo(newShop) ? "OK" : "ERR";

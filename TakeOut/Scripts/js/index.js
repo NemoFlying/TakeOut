@@ -32,7 +32,9 @@
 
     };
     function GetAllShops(data) {
+        console.log("11111111");
         console.log(data);
+        console.log("22222222");
         $(data).each(function () {
             $(".AllShops tbody").append(
                 `
@@ -489,17 +491,17 @@
                         content: `
                             <div class= "layui-form-item shopAll" >
                               <div class="layui-form-item">
-                                <label class="layui-form-label">用户名</label>
+                                <label class="layui-form-label">店铺名称</label>
                                 <div class="layui-input-block">
-                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdateName' placeholder="请输入角色名" autocomplete="off" class="layui-input shopUpdateName">
+                                  <input type="text" value="`+$(this).parents("tr").find("td:nth(1)").text()+`" name="roleUpDateName" required  lay-verify="required" id='shopUpdateName' placeholder="请输入店铺名" autocomplete="off" class="layui-input shopUpdateName">
                                 </div>
                                 <label class="layui-form-label">地址</label>
                                 <div class="layui-input-block">
-                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdateAddr' placeholder="请输入地址" autocomplete="off" class="layui-input shopUpdateAddr">
+                                  <input type="text" value="`+ $(this).parents("tr").find("td:nth(2)").text() +`"  name="roleUpDateName" required  lay-verify="required" id='shopUpdateAddr' placeholder="请输入地址" autocomplete="off" class="layui-input shopUpdateAddr">
                                 </div>
                                 <label class="layui-form-label">电话</label>
                                 <div class="layui-input-block">
-                                  <input type="text" name="roleUpDateName" required  lay-verify="required" id='shopUpdatePhone' placeholder="请输入电话" autocomplete="off" class="layui-input shopUpdatePhone">
+                                  <input type="text" value="`+ $(this).parents("tr").find("td:nth(3)").text() +`"  name="roleUpDateName" required  lay-verify="required" id='shopUpdatePhone' placeholder="请输入电话" autocomplete="off" class="layui-input shopUpdatePhone">
                                 </div>
                               </div>
                             </div>
@@ -511,14 +513,14 @@
                     `
                     });
                     $(".shopUpdateBtn").on("click", function () {
-                        var shopName = $("#shopAddName").val();
-                        var shopAddAddr = $("#shopAddAddr").val();
-                        var shopAddPhone = $("#shopAddPhone").val();
+                        var shopName = $("#shopUpdateName").val();
+                        var shopAddAddr = $("#shopUpdateAddr").val();
+                        var shopAddPhone = $("#shopUpdatePhone").val();
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateRole",
-                            data: { Id: shopId, Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone },
+                            url: "../Shop/AddOrUpdateShop",
+                            data: { Id: shopId, Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone,Locked:"N" },
                             success: function (reData) {
                                 console.log(reData);
                                 if (reData.Status == "ERR") {
@@ -534,8 +536,9 @@
                                     });
                                 }
                                 else {
-                                    $(".AllShops tbody").remove();
-                                    GetAllShops(reData.data);
+                                    $(".AllShops tbody").empty();
+                                    GetAllShops(reData.Data);
+
                                     layer.close(layer.index);
                                 };
 
@@ -603,7 +606,7 @@
                         $.ajax({
                             async: true,
                             type: "POST",
-                            url: "../Shop/AddOrUpdateRole",
+                            url: "../Shop/AddOrUpdateShop",
                             data: { Name: shopName, Addr: shopAddAddr, Phone: shopAddPhone},
                             success: function (reData) {
                                 console.log(reData);

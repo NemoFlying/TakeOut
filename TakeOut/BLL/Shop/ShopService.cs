@@ -16,13 +16,13 @@ namespace TakeOut.BLL
     {
         private readonly IShopDAL _shopDAL;
         private readonly IGoodsDAL _goodsDAL;
-        //private readonly IShopGoodsDAL _shopGoodsDAL;
+        private readonly IUserDAL _userDAL;
 
         public ShopService()
         {
             _shopDAL = new ShopDAL();
             _goodsDAL = new GoodsDAL();
-            //_shopGoodsDAL = new ShopGoodsDAL();
+            _userDAL = new UserDAL();
 
 
         }
@@ -71,7 +71,7 @@ namespace TakeOut.BLL
         /// </summary>
         /// <param name="shopInput"></param>
         /// <returns></returns>
-        public bool AddOrUpdateShopInfo(ShopInfoInput shopInput)
+        public bool AddOrUpdateShopInfo(ShopInfoInput shopInput,int currentUid)
         {
             var shop = _shopDAL.GetModels(con => con.Id == shopInput.Id).FirstOrDefault();
             if(shop is null)
@@ -84,6 +84,7 @@ namespace TakeOut.BLL
                 shop.Addr = shopInput.Addr;
                 shop.Phone = shopInput.Phone;
                 shop.Locked = shopInput.Locked;
+                shop.Keeper = _userDAL.GetModels(con => con.Id == currentUid).FirstOrDefault()
                 _shopDAL.Update(shop);
             }
             try
