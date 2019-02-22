@@ -160,39 +160,56 @@ namespace TakeOut.DAL
             shops.ForEach(item => context.Shop.Add(item));
 
             context.SaveChanges();
-            List<Goods> goods2 = new List<Goods>() {
-                new Goods()
-            {
-                Name = "Product3",
-                Price = 10,
-                SalesNum = 100,
-                Stocks = 200,
-                Unit = "份",
-                Locked = "N"
-            },
-                new Goods()
-            {
-                Name = "Product4",
-                Price = 10,
-                SalesNum = 100,
-                Stocks = 200,
-                Unit = "份",
-                Locked = "N"
-            },
-                new Goods()
-            {
-                Name = "Product5",
-                Price = 10,
-                SalesNum = 100,
-                Stocks = 200,
-                Unit = "份",
-                Locked = "N"
-            }
-        };
-            goods2.ForEach(item => context.Goods.Add(item));
 
+            //OrderInfo
+            var order = new Order()
+            {
+                Addr = "addr",
+                OrderStaus = 0,
+                OrderUser = users[0],
+                Phone = "475210",
+                Remarks = "sss",
+                Recevier = "Nemo",
+                Goods = goods,
+                Shop = shops[0]
+            };
+            context.Order.Add(order);
             context.SaveChanges();
-            
+
+
+            //    List<Goods> goods2 = new List<Goods>() {
+            //        new Goods()
+            //    {
+            //        Name = "Product3",
+            //        Price = 10,
+            //        SalesNum = 100,
+            //        Stocks = 200,
+            //        Unit = "份",
+            //        Locked = "N"
+            //    },
+            //        new Goods()
+            //    {
+            //        Name = "Product4",
+            //        Price = 10,
+            //        SalesNum = 100,
+            //        Stocks = 200,
+            //        Unit = "份",
+            //        Locked = "N"
+            //    },
+            //        new Goods()
+            //    {
+            //        Name = "Product5",
+            //        Price = 10,
+            //        SalesNum = 100,
+            //        Stocks = 200,
+            //        Unit = "份",
+            //        Locked = "N"
+            //    }
+            //};
+            //    goods2.ForEach(item => context.Goods.Add(item));
+
+            //    context.SaveChanges();
+
 
 
 

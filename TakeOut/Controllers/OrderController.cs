@@ -9,85 +9,88 @@ using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
 {
-    public class GoodsController : TakeOutBaseController
+    public class OrderController : TakeOutBaseController
     {
-        private IGoodsService _goodsService { get; set; }
-        // GET: Goods
+        // GET: Order
         public ActionResult Index()
         {
             return View();
         }
 
-        public GoodsController()
+
+        private IOrderService _orderService { get; set; }
+        // GET: Goods
+        public OrderController()
         {
-            _goodsService = new GoodsService();
+            _orderService = new OrderService();
         }
+
         /// <summary>
         /// 获取当前店铺所有菜单列表
         /// </summary>
         /// <returns></returns>
-        public JsonResult GetCurrentShopProduct()
+        public JsonResult GetCurrentShopOrder()
         {
-            return Json( AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_goodsService.GetAllGoodsByShopId(1))
+            return Json(AutoMapper.Mapper.Map<List<OrderOutPutViewModel>>(_orderService.GetAllOrderByShopId(1))
                 , JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// 删除产品名称
+        /// 取消订单
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        public JsonResult DeleteProductById(int productId)
+        public JsonResult DeleteOrderById(int OrderId)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _goodsService.DeleteProductByIds(new List<int>() { productId}) ? "OK" : "ERR";
+            re.Status = _orderService.DeleteOrderInfo(OrderId) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_goodsService.GetAllGoodsByShopId(1));
+                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_orderService.GetAllOrderByShopId(1));
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// 删除产品名称
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
-        public JsonResult AddProductInfo(GoodsInfoInput goodInfo)
-        {
-            JsonReMsg re = new JsonReMsg();
-            re.Status = _goodsService.AddGoodsInfo(goodInfo, 1) ? "OK" : "ERR";
-            if (re.Status == "ERR")
-            {
-                re.Msg = "更新失败";
-            }
-            else
-            {
-                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_goodsService.GetAllGoodsByShopId(1));
-            }
-            return Json(re, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// 更新产品信息
+        /// 更新订单信息
         /// </summary>
         /// <param name="newRole"></param>
         /// <returns></returns>
-        public JsonResult UpdateProductInfo(GoodsInfoInput goodInfo)
+        public JsonResult UpdateOrderInfo(OrderInfoInput orderInfo)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _goodsService.UpdateProductInfo(goodInfo) ? "OK" : "ERR";
+            re.Status = _orderService.UpdateOrderInfo(orderInfo) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_goodsService.GetAllGoodsByShopId(1));
+                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_orderService.GetAllOrderByShopId(1));
+            }
+            return Json(re, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 创建订单
+        /// </summary>
+        /// <param name="newRole"></param>
+        /// <returns></returns>
+        public JsonResult CreateOrder(OrderInfoInput orderInfo,List<int>goodsIds)
+        {
+            JsonReMsg re = new JsonReMsg();
+            re.Status = _orderService.CreateOrder(orderInfo, goodsIds,GuserInfo.User.Id) ? "OK" : "ERR";
+            if (re.Status == "ERR")
+            {
+                re.Msg = "更新失败";
+            }
+            else
+            {
+                re.Data = AutoMapper.Mapper.Map<List<GoodsOutputViewModel>>(_orderService.GetAllOrderByShopId(1));
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }

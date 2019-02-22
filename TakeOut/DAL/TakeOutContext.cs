@@ -16,7 +16,6 @@ namespace TakeOut.DAL
         }
         public DbSet<Goods> Goods { get; set; }
         public DbSet<Order> Order { get; set; }
-        public DbSet<OrderGoods> OrderGoods { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Shop> Shop { get; set; }
         public DbSet<User> User { get; set; }

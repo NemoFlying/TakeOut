@@ -66,8 +66,6 @@ namespace TakeOut.Models
         public virtual User Keeper { get; set; }
 
         //多个商品
-
-        [JsonIgnore]
         public virtual ICollection<Goods> Goods { get; set; }
 
     }
