@@ -218,7 +218,6 @@
     <Compile Include="ViewModels\OrderOutPutViewModel.cs" />
     <Compile Include="ViewModels\SelectOptionModel.cs" />
     <Compile Include="ViewModels\ShopOutPutViewModel.cs" />
-    <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

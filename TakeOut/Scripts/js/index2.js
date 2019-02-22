@@ -8,4 +8,12 @@
     $("#Admin").on("click", function () {
         window.location.href = 'index';
     });
+
+    $(function () {
+
+        $.post("../User/GetCurrentUser", {}, function (reData) {
+            console.log(reData);
+        })
+    })
+
 };

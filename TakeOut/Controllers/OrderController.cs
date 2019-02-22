@@ -83,7 +83,7 @@ namespace TakeOut.Controllers
         public JsonResult CreateOrder(OrderInfoInput orderInfo,List<int>goodsIds)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _orderService.CreateOrder(orderInfo, goodsIds,GuserInfo.User.Id) ? "OK" : "ERR";
+            re.Status = _orderService.CreateOrder(orderInfo, goodsIds,GuserInfo.Id) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";

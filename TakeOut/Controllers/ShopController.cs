@@ -65,7 +65,7 @@ namespace TakeOut.Controllers
         public JsonResult AddOrUpdateShop(ShopInfoInput newShop)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _shopService.AddOrUpdateShopInfo(newShop,GuserInfo.User.Id) ? "OK" : "ERR";
+            re.Status = _shopService.AddOrUpdateShopInfo(newShop,GuserInfo.Id) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";

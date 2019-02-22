@@ -116,6 +116,16 @@ namespace TakeOut.Controllers
         }
 
         /// <summary>
+        /// 获取当前登录用户信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GetCurrentUser()
+        {
+            return Json(GuserInfo, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
         /// 根据Id删除用户信息
         /// </summary>
         /// <param name="ids"></param>

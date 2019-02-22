@@ -39,7 +39,7 @@ namespace TakeOut.DAL
                 new User()
                 {
                     LogonUser = "admin",
-                    Password="FFBD90693A6A629C960CC7DC581F01D9",
+                    Password="2E73DEE9F5A16E7FDCEC25BD84D7DCFC",
                     HeadPortrait="图片地址",
                     Sex="M",
                     Phone="123",
