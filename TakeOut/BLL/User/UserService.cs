@@ -117,9 +117,9 @@ namespace TakeOut.BLL
             var user = Mapper.Map<User>(userInfo);
             
             var role = _roleDAL.GetModels(con => con.Name == "user").FirstOrDefault();
-            //user.Roles = new List<Role>() {
-            //    role
-            //};
+            user.Roles = new List<Role>() {
+                role
+            };
             _userDAL.Add(user);
             try
             {
