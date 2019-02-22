@@ -9,91 +9,88 @@ using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
 {
-    public class ShopController : TakeOutBaseController
+    public class GoodsController : TakeOutBaseController
     {
-        private IShopService _shopService { get; set; }
-
-        public ShopController()
-        {
-            _shopService = new ShopService();
-        }
-
-        // GET: Shop
+        private IGoodsService _goodsService { get; set; }
+        // GET: Goods
         public ActionResult Index()
         {
             return View();
         }
 
+        public GoodsController()
+        {
+            _goodsService = new GoodsService();
+        }
         /// <summary>
-        /// 获取店铺列表
+        /// 获取当前店铺所有菜单列表
         /// </summary>
         /// <returns></returns>
         public JsonResult GetAllShops()
         {
-            return Json(_shopService.GetAllShopsInfo(), JsonRequestBehavior.AllowGet);
+            return Json(_goodsService.GetAllGoodsByShopId(1)
+                , JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// ById删除店铺
+        /// 删除产品名称
         /// </summary>
-        /// <param name="shopId"></param>
+        /// <param name="productId"></param>
         /// <returns></returns>
-        public JsonResult DeleteShop(int shopId)
+        public JsonResult DeleteProductById(int productId)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _shopService.DeleteShopInfo(shopId) ? "OK" : "ERR";
+            re.Status = _goodsService.DeleteProductByIds(new List<int>() { productId}) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = _goodsService.GetAllGoodsByShopId(1);
             }
             return Json(re, JsonRequestBehavior.AllowGet);
-
         }
 
         /// <summary>
-        /// 添加OR修改
+        /// 删除产品名称
         /// </summary>
-        /// <param name="newShop"></param>
+        /// <param name="productId"></param>
         /// <returns></returns>
-        /// <summary>
-        public JsonResult AddOrUpdateRole(ShopInfoInput newShop)
+        public JsonResult AddProductInfo(GoodsInfoInput goodInfo)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _shopService.AddOrUpdateShopInfo(newShop) ? "OK" : "ERR";
+            re.Status = _goodsService.AddGoodsInfo(goodInfo, 1) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = _goodsService.GetAllGoodsByShopId(1);
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
 
-
         /// <summary>
-        /// 审核状态改变
+        /// 更新产品信息
         /// </summary>
-        public JsonResult ApplyStatusChange(int shopId, bool agree)
+        /// <param name="newRole"></param>
+        /// <returns></returns>
+        public JsonResult UpdateProductInfo(GoodsInfoInput goodInfo)
         {
             JsonReMsg re = new JsonReMsg();
-            re.Status = _shopService.ApplyStatus(shopId, agree) ? "OK" : "ERR";
+            re.Status = _goodsService.UpdateProductInfo(goodInfo) ? "OK" : "ERR";
             if (re.Status == "ERR")
             {
                 re.Msg = "更新失败";
             }
             else
             {
-                re.Data = _shopService.GetAllShopsInfo();
+                re.Data = _goodsService.GetAllGoodsByShopId(1);
             }
             return Json(re, JsonRequestBehavior.AllowGet);
         }
-
 
 
     }
