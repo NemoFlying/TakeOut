@@ -30,12 +30,6 @@ namespace TakeOut.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// 商店名称
-        /// </summary>
-        [Required]
-        public virtual User Keeper { get; set; }
-
-        /// <summary>
         /// 店铺地址
         /// </summary>
         [MaxLength(150)]
@@ -60,9 +54,18 @@ namespace TakeOut.Models
         /// <summary>
         /// 店铺申请状态
         /// 0:申请中
-        /// 1:激活
+        /// 1:申请通过
         /// </summary>
         public int ApplyStaus { get; set; }
+
+        /// <summary>
+        /// 商家信息
+        /// </summary>
+        [Required]
+        public virtual User Keeper { get; set; }
+
+        //多个商品
+        public virtual ICollection<Goods> Goods { get; set; }
 
     }
 }

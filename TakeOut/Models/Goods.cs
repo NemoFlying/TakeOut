@@ -19,6 +19,7 @@ namespace TakeOut.Models
             this.Unit = "份";
             this.Stocks = 0;
             this.SalesNum = 0;
+            this.CreateDate = DateTime.Now;
         }
 
         [Key]
@@ -76,6 +77,6 @@ namespace TakeOut.Models
         /// </summary>
         public DateTime CreateDate { get; set; }
 
-
+        public virtual Shop Shop { get; set; }
     }
 }

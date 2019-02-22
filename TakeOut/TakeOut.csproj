@@ -194,8 +194,6 @@
     <Compile Include="DAL\Order\OrderDAL.cs" />
     <Compile Include="DAL\Role\IRoleDAL.cs" />
     <Compile Include="DAL\Role\RoleDAL.cs" />
-    <Compile Include="DAL\ShopGoods\IShopGoodsDAL.cs" />
-    <Compile Include="DAL\ShopGoods\ShopGoodsDAL.cs" />
     <Compile Include="DAL\Shop\IShopDAL.cs" />
     <Compile Include="DAL\Shop\ShopDAL.cs" />
     <Compile Include="DAL\TakeOutContext.cs" />
@@ -212,7 +210,6 @@
     <Compile Include="Models\OrderGoods.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Shop.cs" />
-    <Compile Include="Models\ShopGoods.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
