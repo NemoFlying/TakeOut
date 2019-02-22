@@ -273,6 +273,7 @@
     <Content Include="Scripts\js\css\modules\layer\default\loading-1.gif" />
     <Content Include="Scripts\js\css\modules\layer\default\loading-2.gif" />
     <Content Include="Scripts\js\index.js" />
+    <Content Include="Scripts\js\index2.js" />
     <Content Include="Scripts\js\layui-index.js" />
     <Content Include="Scripts\js\layui.js" />
     <Content Include="Scripts\js\lay\modules\carousel.js" />
@@ -295,6 +296,7 @@
     <Content Include="Scripts\js\lay\modules\upload.js" />
     <Content Include="Scripts\js\lay\modules\util.js" />
     <Content Include="Scripts\js\logon.js" />
+    <Content Include="Scripts\js\search.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -314,6 +316,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Home\search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

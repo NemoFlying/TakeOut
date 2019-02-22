@@ -60,7 +60,7 @@ namespace TakeOut.BLL
                 _shopDAL.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

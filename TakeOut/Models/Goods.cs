@@ -76,14 +76,7 @@ namespace TakeOut.Models
         /// 创建时间
         /// </summary>
         public DateTime CreateDate { get; set; }
-
         [Required]
         public virtual Shop Shop { get; set; }
-
-        /// <summary>
-        /// 订单多对多
-        /// </summary>
-        public ICollection<Order> Order { get; set; }
-
     }
 }
