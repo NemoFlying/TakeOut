@@ -84,7 +84,7 @@ namespace TakeOut.BLL
                 shop.Addr = shopInput.Addr;
                 shop.Phone = shopInput.Phone;
                 shop.Locked = shopInput.Locked;
-                shop.Keeper = _userDAL.GetModels(con => con.Id == currentUid).FirstOrDefault()
+                shop.Keeper = _userDAL.GetModels(con => con.Id == currentUid).FirstOrDefault();
                 _shopDAL.Update(shop);
             }
             try
