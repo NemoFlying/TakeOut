@@ -18,16 +18,18 @@ namespace TakeOut.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
 
+        public int UId { get; set; }
+
+        public int RId { get; set; }
+
         /// <summary>
         /// 角色名称
         /// </summary>
-        [Required]
         public virtual User LogonUser { get; set; }
 
         /// <summary>
         /// 角色名称
         /// </summary>
-        [Required]
         public virtual Role LogonRole { get; set; }
 
         /// <summary>

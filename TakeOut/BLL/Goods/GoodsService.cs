@@ -59,7 +59,8 @@ namespace TakeOut.BLL
             try
             {
                 _shopGoodsDAL.SaveChanges();
-                return _goodsDAL.SaveChanges();
+                _goodsDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -78,7 +79,7 @@ namespace TakeOut.BLL
         {
             //添加基本信息
             var goods = Mapper.Map<Goods>(newGoods);
-            _goodsDAL.Add(goods);
+           // _goodsDAL.Add(goods);
             //添加产品商店对应
             _shopGoodsDAL.Add(
                 new ShopGoods()
@@ -89,8 +90,9 @@ namespace TakeOut.BLL
                 );
             try
             {
-                _goodsDAL.SaveChanges();
-                return _shopGoodsDAL.SaveChanges();
+                //_goodsDAL.SaveChanges();
+                _shopGoodsDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -111,7 +113,8 @@ namespace TakeOut.BLL
                 _goodsDAL.Update(Mapper.Map(newGoods, goods));
             try
             {
-                return _goodsDAL.SaveChanges();
+                _goodsDAL.SaveChanges();
+                return true;
             }
             catch
             {

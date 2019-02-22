@@ -12,7 +12,7 @@ using TakeOut.ViewModels;
 
 namespace TakeOut.Controllers
 {
-    public class UserController : Controller
+    public class UserController : TakeOutBaseController
     {
         private IUserService _userService { get; set; }
 
@@ -57,6 +57,10 @@ namespace TakeOut.Controllers
                     break;
                 case "0":
                 default:
+                    //获取登陆用户信息
+                    //保存Session
+                    var userInfo = _userService.GetUserInfoByName(logonUser);
+                    HttpContext.Session["userinfo"] = userInfo;
                     reData.Status = "OK";
                     break;
             }
@@ -124,6 +128,7 @@ namespace TakeOut.Controllers
             {
                 reData.Msg = "删除失败,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
@@ -137,8 +142,9 @@ namespace TakeOut.Controllers
             var reData = new JsonReMsg() { Status = _userService.DisableOrEnableUserById(userId, lockStatus) ? "OK" : "ERR" };
             if (reData.Status == "ERR")
             {
-                reData.Msg = "删除失败,请联系管理员!";
+                reData.Msg = "设置禁用/解禁失败,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
 
@@ -153,8 +159,9 @@ namespace TakeOut.Controllers
             var reData = new JsonReMsg() { Status = _userService.SetUserRole(userId, RoleId) ? "OK" : "ERR" };
             if (reData.Status == "ERR")
             {
-                reData.Msg = "删除失败,请联系管理员!";
+                reData.Msg = "设置用户角色,请联系管理员!";
             }
+            reData.Data = _userService.GetAllUserInfo();
             return Json(reData, JsonRequestBehavior.AllowGet);
         }
 

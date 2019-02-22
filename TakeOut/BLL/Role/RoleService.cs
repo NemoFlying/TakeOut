@@ -8,7 +8,7 @@ using TakeOut.Models;
 
 namespace TakeOut.BLL
 {
-    public class RoleService
+    public class RoleService: IRoleService
     {
         private readonly IRoleDAL _roleDAL;
 
@@ -50,7 +50,8 @@ namespace TakeOut.BLL
             });
             try
             {
-                return _roleDAL.SaveChanges();
+                 _roleDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -85,7 +86,16 @@ namespace TakeOut.BLL
                 role.Description = newRole.Description;
                 _roleDAL.Update(role);
             }
-            return _roleDAL.SaveChanges();
+            try
+            {
+                _roleDAL.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                //日志记录
+                return false;
+            }
         }
 
 

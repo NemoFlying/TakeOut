@@ -85,7 +85,7 @@ namespace TakeOut.BLL
             {
                 //获取用户组信息【当前用户只能具有一个权限】
                 var role = _userRoleDAL
-                    .GetModels(con => con.LogonUser.Id == user.Id)
+                    .GetModels(con => con.UId == user.Id)
                     .FirstOrDefault();
                 if(role!=null)
                 {
@@ -133,7 +133,8 @@ namespace TakeOut.BLL
             try
             {
                  //_userDAL.SaveChanges();
-                return _userRoleDAL.SaveChanges();
+                _userRoleDAL.SaveChanges();
+                return true;
             }
             catch(Exception ex)
             {
@@ -149,7 +150,25 @@ namespace TakeOut.BLL
         /// <returns></returns>
         public List<UserInfoOutput> GetAllUserInfo()
         {
-            return Mapper.Map<List<UserInfoOutput>>(_userDAL.GetModels(con => 1 == 1).ToList());
+            var userInfo = Mapper.Map<List<UserInfoOutput>>(_userDAL.GetModels(con => 1 == 1).ToList());
+            userInfo.ForEach(item =>
+            {
+                //添加角色名称
+                var user = userInfo.Find(con => con.Id == item.Id);
+                var role = _userRoleDAL.GetModels(con => con.UId == item.Id).FirstOrDefault();
+                if (role != null)
+                {
+                    user.RoleName = _roleDAL.GetModels(con => con.Id == role.RId).FirstOrDefault().Name;
+                }
+                var shop = _shopDAL.GetModels(con => con.Keeper.Id == item.Id).FirstOrDefault();
+                if (shop != null)
+                {
+                    user.ShopID = shop.Id;
+                    user.ShopLocked = shop.Locked;
+                    user.ShopName = shop.Name;
+                }
+            });
+            return userInfo;
         }
 
         /// <summary>
@@ -174,8 +193,10 @@ namespace TakeOut.BLL
             });
             try
             {
-                return _userDAL.SaveChanges();
-            }catch
+                _userDAL.SaveChanges();
+                return true;
+            }
+            catch
             {
                 //日志记录
                 return false;
@@ -196,7 +217,8 @@ namespace TakeOut.BLL
 
             try
             {
-                return _userDAL.SaveChanges();
+                _userDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -253,7 +275,8 @@ namespace TakeOut.BLL
             }
             try
             {
-                return _userRoleDAL.SaveChanges();
+                 _userRoleDAL.SaveChanges();
+                return true;
             }
             catch
             {
@@ -263,23 +286,29 @@ namespace TakeOut.BLL
         }
 
         /// <summary>
-        /// 设置用户角色
+        /// 设置用户角色【当前只能一个角色】
         /// </summary>
         /// <param name="id"></param>
         /// <param name="adminStatus"></param>
         /// <returns></returns>
         public bool SetUserRole(int userId, int roleId)
         {
+            var userRole = _userRoleDAL.GetModels(con => con.UId == userId).FirstOrDefault();
+            if(userRole != null)
+            {
+                _userRoleDAL.Delete(userRole);
+            };
             _userRoleDAL.Add(new UserRole()
             {
-                LogonUser = _userDAL.GetModels(con => con.Id == userId).FirstOrDefault(),
-                LogonRole = _roleDAL.GetModels(con => con.Id == roleId).FirstOrDefault()
+                UId = userId,
+                RId = roleId
             });
             try
             {
-                return _userRoleDAL.SaveChanges();
+                _userRoleDAL.SaveChanges();
+                return true;
             }
-            catch
+            catch(Exception ex)
             {
                 //日志记录
                 return false;

@@ -75,6 +75,7 @@ namespace TakeOut.Models
         /// </summary>
         public DateTime CreateDate { get; set; }
 
+        public virtual ICollection<UserRole> UserRoles { set; get; }
 
     }
 }
